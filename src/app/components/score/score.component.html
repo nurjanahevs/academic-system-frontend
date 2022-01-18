@@ -1,0 +1,200 @@
+<div class="content-wrapper">
+  <div class="container">
+    <div class="row mb-3">
+      <div class="card text-white bg mb-3" style="max-width: 75%">
+        <div class="card-header">KELOLA NILAI MATA PELAJARAN</div>
+        <div class="card-body" style="background-color: white">
+          <table class="table mb-5 table-bordered">
+            <tbody>
+              <tr>
+                <th class="dropdown text-left" scope="row">Academic Year</th>
+                <td>
+                  <select class="form-select" id="inputGroupSelect01">
+                    <option selected>Select year</option>
+                    <option value="1">2020/2021</option>
+                    <option value="2">2021/2022</option>
+                    <option value="3">2022/2023</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th class="text-left" scope="row">Semester</th>
+                <td>
+                  <select class="form-select" id="inputGroupSelect01">
+                    <option selected>Select semester</option>
+                    <option value="1">odd</option>
+                    <option value="2">even</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th class="text-left" scope="row text-left">Class</th>
+                <td>
+                  <select class="form-select" id="inputGroupSelect01">
+                    <option selected>Select class</option>
+                    <option value="1">I</option>
+                    <option value="2">II</option>
+                    <option value="3">III</option>
+                    <option value="4">IV</option>
+                    <option value="5">V</option>
+                    <option value="6">VI</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+            <button class="btn btn-primary mt-2">Search</button>
+          </table>
+          <div class="table-responsive-sm">
+            <table class="table table-bordered mb-5">
+              <thead id="header-fixed">
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">NIS</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Daily Tests</th>
+                  <th scope="col">Middterm Tests</th>
+                  <th scope="col">Final Tests</th>
+                  <th scope="col">Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>2020001</td>
+                  <td>Mark</td>
+                  <td class="text-center">
+                    70
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>2020002</td>
+                  <td>Jacob</td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    90
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    87
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    70
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>2020003</td>
+                  <td>Larry Petes</td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>2020001</td>
+                  <td>Derullo</td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>2020001</td>
+                  <td>Harris</td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                    <a routerLink="/addscore"><button type="button" class="btn edit" style="width: 40px">
+                      <i class="far fa-edit"></i>
+                    </button></a>
+                  </td>
+                  <td class="text-center">
+                    80
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button type="button" class="btn btn-success">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
