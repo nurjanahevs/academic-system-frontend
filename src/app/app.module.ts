@@ -10,6 +10,7 @@ import { ClassesComponent } from './components/classes/classes.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddscoreComponent } from './components/addscore/addscore.component';
+import { ClassdetailComponent } from './components/classdetail/classdetail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddscoreComponent } from './components/addscore/addscore.component';
     ClassesComponent,
     ProfileComponent,
     HeaderComponent,
-    AddscoreComponent
+    AddscoreComponent,
+    ClassdetailComponent
   ],
   imports: [
     BrowserModule,
