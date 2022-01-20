@@ -1,4 +1,4 @@
-tr{
+tr {
   color: black;
 }
 
@@ -15,7 +15,6 @@ tr{
   padding: 15px;
 }
 .form-control {
- 
   padding: 0px;
 }
 
@@ -29,11 +28,15 @@ tr{
   height: 30px;
 }
 
-th, input {
+th,
+input {
   text-align: center;
 }
 
-
+.table th,
+.table td {
+  vertical-align: middle;
+}
 
 /* .tabs {
   margin: auto;

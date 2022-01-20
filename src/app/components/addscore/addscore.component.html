@@ -6,74 +6,36 @@
 
     <div class="container body-form">
       <!-- <mat-spinner *ngIf="!spinner" class="spinner"></mat-spinner> -->
-      <form class="row g-3" >
+      <form class="row g-3">
         <div class="col-2">
-          <label for="fullname" class="visually-hidden">SCORE</label>
-          <input
-            type="text"
-            readonly
-            class="form-control-plaintext"
-            id="score"
-            value="SCORE"
-          />
+          <label for="fullname">SCORE</label>
         </div>
         <div class="col-8">
           <label for="fullname-1" class="visually-hidden">score</label>
           <input
             type="text"
-            readonly
-            class="form-control-plaintext"
+            class="form-control"
             id="score"
-            value="90"
+            [value]="score.dailyScore"
           />
         </div>
         <div class="col-auto">
           <button
             type="button"
             class="btn btn-primary mb-2"
-            (click)="onUpdateScore()"
-            *ngIf="!updateScore"
+            (click)="onUpdate()"
           >
             Update
           </button>
           <button
             type="button"
             class="btn btn-danger mb-2"
-            (click)="onUpdateScore()"
-            *ngIf="updateScore"
+            (click)="onCancel()"
           >
             Cancel
-          </button>
-        </div>
-        <div class="col-2" *ngIf="updateScore">
-          <label for="score" class="visually-hidden">score</label>
-          <input
-            type="text"
-            readonly
-            class="form-control-plaintext"
-            id="score"
-          />
-        </div>
-        <div class="col-8" *ngIf="updateScore">
-          <label for="Score-3" class="visually-hidden">score</label>
-          <input
-            type="text"
-            class="form-control"
-            id="score"
-            placeholder="score"
-          />
-        </div>
-        <div class="col-auto" *ngIf="updateScore">
-          <button
-            type="button"
-            class="btn btn-success ms-2 mb-2"
-            *ngIf="updateScore"
-          >
-            Save
           </button>
         </div>
       </form>
     </div>
   </div>
 </div>
-

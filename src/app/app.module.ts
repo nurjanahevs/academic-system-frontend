@@ -11,6 +11,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddscoreComponent } from './components/addscore/addscore.component';
 import { ClassdetailComponent } from './components/classdetail/classdetail.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,13 +26,12 @@ import { ClassdetailComponent } from './components/classdetail/classdetail.compo
     ProfileComponent,
     HeaderComponent,
     AddscoreComponent,
-    ClassdetailComponent
+    ClassdetailComponent,
+    LoginComponent,
+    HomeComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
