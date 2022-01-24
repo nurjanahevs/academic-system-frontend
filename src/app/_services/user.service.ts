@@ -22,13 +22,7 @@ export class UserService {
     classes: string
   ): Observable<Classes> {
     return this.http.get<Classes>(
-      API_URL +
-        'teacher/score/search-by/' +
-        academicYear +
-        '/' +
-        semester +
-        '/' +
-        classes
+      `${API_URL}teacher/score/search-by?academicYear=${academicYear}&semester=${semester}&classes=${classes}`
     );
   }
 
@@ -37,7 +31,7 @@ export class UserService {
   }
 
   updateScoreSpecific(id: string, nama: string, value: string) {
-    return this.http.put(API_URL + 'teacher/score/update/' + id, {
+    return this.http.put(API_URL + 'teacher/score/update-score/' + id, {
       nama,
       value,
     });

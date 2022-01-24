@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 const SCORE_KEY = 'score-key';
+const CLASS_KEY = 'class-key';
 
 @Injectable({
   providedIn: 'root',
@@ -10,43 +11,44 @@ const SCORE_KEY = 'score-key';
 export class TokenStorageService {
   constructor() {}
 
-  signOut(): void {
-    window.localStorage.clear();
-  }
-
   public saveScoreUser(id: string, nama: string): void {
-    window.localStorage.removeItem(SCORE_KEY);
-    window.localStorage.setItem(SCORE_KEY, JSON.stringify({ id, nama }));
+    localStorage.setItem(SCORE_KEY, JSON.stringify({ id, nama }));
   }
 
   public getScoreUser(): string | null {
-    return window.localStorage.getItem(SCORE_KEY);
+    return localStorage.getItem(SCORE_KEY);
   }
 
   public deleteScoreUser(): void {
-    window.localStorage.removeItem(SCORE_KEY);
+    localStorage.removeItem(SCORE_KEY);
   }
 
   public saveToken(token: string): void {
-    window.localStorage.removeItem(TOKEN_KEY);
-    window.localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(TOKEN_KEY, token);
   }
 
   public getToken(): string | null {
-    return window.localStorage.getItem(TOKEN_KEY);
+    return localStorage.getItem(TOKEN_KEY);
+  }
+
+  public deleteToken(): void {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(USER_KEY);
   }
 
   public saveUser(user: any): void {
-    window.localStorage.removeItem(USER_KEY);
-    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+
+  public getClassTeacher(): string | null {
+    return localStorage.getItem(CLASS_KEY);
   }
 
   public getUser(): any {
-    const user = window.localStorage.getItem(USER_KEY);
+    const user = localStorage.getItem(USER_KEY);
     if (user) {
       return JSON.parse(user);
     }
-
     return {};
   }
 }

@@ -1,0 +1,189 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<!-- <div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="tabs col-12 shadow">
+      <div class="data">
+        <h3>Class select</h3>
+      </div>
+      <br />
+      <div class="mb-3 row">
+        <label for="classname" class="col-sm-2 col-form-label">Class</label>
+        <div class="col-sm-10">
+          <select class="form-select" id="specificSizeSelect">
+            <option></option>
+            <option value="1">I</option>
+            <option value="2">II</option>
+            <option value="3">III</option>
+            <option value="4">IV</option>
+            <option value="5">V</option>
+            <option value="6">VI</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="fullname" class="col-sm-2 col-form-label"
+          >Academic Year</label
+        >
+        <div class="col-sm-10">
+          <select class="form-select" id="specificSizeSelect">
+            <option></option>
+            <option value="1">2018/2019</option>
+            <option value="2">2019/2020</option>
+            <option value="3">2020/2021</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="fullname" class="col-sm-2 col-form-label">Semester</label>
+        <div class="col-sm-10">
+          <select class="form-select" id="specificSizeSelect">
+            <option></option>
+            <option value="1">I</option>
+            <option value="2">II</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn-primary">Check</button>
+    </div>
+  </div>
+</div> -->
+
+<div class="content-wrapper">
+  <div class="container-fluid" id="description">
+    <div class="row">
+      <div class="title col-4">
+        <p><strong>Class </strong></p>
+      </div>
+      <div class="is col-2"><p>:</p></div>
+      <div class="desc col-4"><p>IV</p></div>
+    </div>
+    <div class="row">
+      <div class="title col-4">
+        <p><strong> Semester</strong></p>
+      </div>
+      <div class="is col-2"><p>:</p></div>
+      <div class="desc col-4"><p>odd</p></div>
+    </div>
+    <div class="row">
+      <div class="title col-4">
+        <p><strong>HomeroomTeacher </strong></p>
+      </div>
+      <div class="is col-2"><p>:</p></div>
+      <div class="desc col-4"><p>Eva</p></div>
+    </div>
+    <div class="row">
+      <div class="title col-4">
+        <p><strong>Academic Year</strong></p>
+      </div>
+      <div class="is col-2"><p>:</p></div>
+      <div class="desc col-4"><p>2021/2022</p></div>
+    </div>
+    <div class="tabs col-12 shadow">
+      <div class="data">
+        <h3>Class data</h3>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Year of academic</th>
+            <th scope="col">Class</th>
+            <th scope="col">Homeroom Teacher</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="teacher-data">
+            <th scope="row" class="id">2021</th>
+            <td class="name">I</td>
+            <td class="name">Mark</td>
+            <td class="desc">
+              <button class="btn edit btn-warning" style="color: #ffff">
+                <a routerLink="/headmaster/class/edit" routerLinkActive="active"
+                  ><fa-icon [icon]="faEdit"></fa-icon>edit</a
+                >
+              </button>
+            </td>
+          </tr>
+
+          <tr class="teacher-data">
+            <th scope="row" class="id">2021</th>
+            <td class="name">II</td>
+            <td class="name">Mark</td>
+            <td class="desc">
+              <button class="btn edit btn-warning" style="color: #ffff">
+                <a routerLink="/headmaster/class/edit" routerLinkActive="active"
+                  ><fa-icon [icon]="faEdit"></fa-icon>edit</a
+                >
+              </button>
+            </td>
+          </tr>
+
+          <tr class="teacher-data">
+            <th scope="row" class="id">2021</th>
+            <td class="name">III</td>
+            <td class="name">Mark</td>
+            <td class="desc">
+              <button class="btn edit btn-warning" style="color: #ffff">
+                <a routerLink="/editclass" routerLinkActive="active"
+                  ><fa-icon [icon]="faEdit"></fa-icon>edit</a
+                >
+              </button>
+            </td>
+          </tr>
+
+          <tr class="teacher-data">
+            <th scope="row" class="id">2021</th>
+            <td class="name">IV</td>
+            <td class="name">Mark</td>
+            <td class="desc">
+              <button class="btn edit btn-warning" style="color: #ffff">
+                <a routerLink="/editclass" routerLinkActive="active"
+                  ><fa-icon [icon]="faEdit"></fa-icon>edit</a
+                >
+              </button>
+            </td>
+          </tr>
+
+          <tr class="teacher-data">
+            <th scope="row" class="id">2021</th>
+            <td class="name">V</td>
+            <td class="name">Mark</td>
+            <td class="desc">
+              <button class="btn edit btn-warning" style="color: #ffff">
+                <a routerLink="/editclass" routerLinkActive="active"
+                  ><fa-icon [icon]="faEdit"></fa-icon>edit</a
+                >
+              </button>
+            </td>
+          </tr>
+
+          <tr class="teacher-data">
+            <th scope="row" class="id">2021</th>
+            <td class="name">VI</td>
+            <td class="name">Mark</td>
+            <td class="desc">
+              <button class="btn edit btn-warning" style="color: #ffff">
+                <a routerLink="/editclass" routerLinkActive="active"
+                  ><fa-icon [icon]="faEdit"></fa-icon>edit</a
+                >
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <a
+                routerLink="/formClass"
+                routerLinkActive="active"
+                class="btn btn-primary"
+                >+add data</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

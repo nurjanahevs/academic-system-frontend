@@ -32,6 +32,22 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
   z-index: 100;
 }
+mat-spinner {
+  margin: auto;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+#inputError {
+  font-size: 10px;
+  color: red;
+  margin-left: 5px;
+}
+#inputErrorSelect {
+  font-size: 10px;
+  color: red;
+  margin-left: 5px;
+}
 .card .card-body .footer {
   padding: 10px 20px;
 }

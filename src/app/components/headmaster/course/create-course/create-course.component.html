@@ -1,0 +1,57 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="container set">
+  <div class="container title-form">
+    <h2>Create New Course</h2>
+  </div>
+
+  <div class="container body-form">
+    <mat-spinner *ngIf="!spinner" class="spinner"></mat-spinner>
+    <form [formGroup]="createFormCourse" *ngIf="spinner">
+      <div class="mb-3 row">
+        <label for="course" class="col-sm-2 col-form-label">Course name</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="course"
+            placeholder="course"
+            formControlName="course"
+          />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="Code" class="col-sm-2 col-form-label">Code</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="code"
+            placeholder="code"
+            formControlName="code"
+          />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputTeacher" class="col-sm-2 col-form-label"
+          >Teacher</label
+        >
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="inputTeacher"
+            placeholder="Teacher"
+            formControlName="Teacher"
+          />
+        </div>
+      </div>
+      <div class="container action">
+        <button class="btn btn-primary action-1" (click)="onSubmit()">
+          Save
+        </button>
+        <button class="btn action-2" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

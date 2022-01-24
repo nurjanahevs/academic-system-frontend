@@ -1,0 +1,79 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="container col-sm-9 set">
+  <div class="container title-form">
+    <h2>Create New Teacher</h2>
+  </div>
+
+  <div class="container body-form">
+    <mat-spinner *ngIf="!spinner" class="spinner"><p>Loading</p></mat-spinner>
+    <form [formGroup]="createFormTeacher" *ngIf="spinner">
+      <div class="mb-3 row">
+        <label for="fullname" class="col-sm-2 col-form-label">Fullname</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="fullname"
+            placeholder="Fullname"
+            formControlName="fullName"
+          />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Email"
+            formControlName="email"
+          />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="birthday" class="col-sm-2 col-form-label">Birthday</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="birthday"
+            placeholder="dd-mm-yyyy"
+            formControlName="birthDate"
+          />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="course" class="col-sm-2 col-form-label">Course</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="course"
+            placeholder="Course"
+            formControlName="course"
+          />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="class" class="col-sm-2 col-form-label">Class</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="class"
+            placeholder="Class"
+            formControlName="teachClass"
+          />
+        </div>
+      </div>
+      <div class="container action">
+        <button class="btn btn-primary action-1" (click)="onSubmit()">
+          Save
+        </button>
+        <button class="btn action-2" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
