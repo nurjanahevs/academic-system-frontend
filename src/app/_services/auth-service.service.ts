@@ -15,7 +15,7 @@ export class AuthServiceService {
   isLoggedIn = false;
   errorMessage = '';
   token: string | null = '';
-  authStatusListener = new Subject<boolean>();
+  // authStatusListener = new Subject<boolean>();
   constructor(
     private http: HttpClient,
     private tokenStorage: TokenStorageService,
@@ -26,9 +26,9 @@ export class AuthServiceService {
     return this.token;
   }
 
-  getAuthStatusListener() {
-    return this.authStatusListener.asObservable();
-  }
+  // getAuthStatusListener() {
+  //   return this.authStatusListener.asObservable();
+  // }
 
   login(email: string, password: string, role: string) {
     const authData: AuthData = { email, password, role };

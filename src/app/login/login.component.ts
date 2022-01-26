@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loadingSpinner();
     this.loginFormInit();
-    this.authStatusListen();
+    // this.authStatusListen();
   }
 
   get loginForm() {
@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(user.email, user.password, user.role);
   }
 
-  authStatusListen() {
-    this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
-      this.userIsAuthenticated = isAuthenticated;
-    });
-  }
+  // authStatusListen() {
+  //   this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
+  //     this.userIsAuthenticated = isAuthenticated;
+  //   });
+  // }
 
   loadingSpinner() {
     setTimeout(() => {
