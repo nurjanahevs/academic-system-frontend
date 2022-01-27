@@ -1,5 +1,3 @@
-<app-header></app-header>
-<app-sidebar></app-sidebar>
 <div class="container set">
   <div class="container title-form">
     <h2>Update Data Course</h2>
@@ -67,6 +65,7 @@
       <div class="col-auto" *ngIf="updateFullname">
         <button
           type="button"
+          (click)="onError()"
           class="btn btn-success ms-2 mb-2"
           *ngIf="updateAll"
         >
@@ -133,6 +132,7 @@
       <div class="col-auto" *ngIf="updateEmail">
         <button
           type="button"
+          (click)="onError()"
           class="btn btn-success ms-2 mb-2"
           *ngIf="updateAll"
         >
@@ -199,12 +199,24 @@
       <div class="col-auto" *ngIf="updatePassword">
         <button
           type="button"
+          (click)="onError()"
           class="btn btn-success ms-2 mb-2"
           *ngIf="updateAll"
         >
           Save
         </button>
       </div>
+      <div class="col-auto">
+        <button
+          type="button"
+          class="btn btn-success ms-2 mb-2"
+          routerLink="/headmaster/course"
+        >
+          Back
+        </button>
+      </div>
+      
     </form>
   </div>
+  
 </div>

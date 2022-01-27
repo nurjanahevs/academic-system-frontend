@@ -19,7 +19,7 @@ const routes: Routes = [
       import('./components/teacher/teacher.module').then(
         (m) => m.TeacherModule
       ),
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'headmaster',
@@ -27,7 +27,14 @@ const routes: Routes = [
       import('./components/headmaster/headmaster.module').then(
         (m) => m.HeadmasterModule
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: 'student',
+    loadChildren: () =>
+      import('./components/student/student.module').then(
+        (m) => m.StudentModule
+      ),
   },
 ];
 

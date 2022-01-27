@@ -13,7 +13,20 @@ import { ProfileComponent } from './profile/profile.component';
 import { ClassesComponent } from './classes/classes.component';
 import { ClassdetailComponent } from './classdetail/classdetail.component';
 import { HeaderComponent } from './header/header.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
+FullCalendarModule.registerPlugins([
+  // register FullCalendar plugins
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin,
+]);
 
 @NgModule({
   declarations: [
@@ -25,14 +38,16 @@ import { HeaderComponent } from './header/header.component';
     ProfileComponent,
     ClassesComponent,
     ClassdetailComponent,
-    HeaderComponent
+    HeaderComponent,
+    ScheduleComponent
   ],
   imports: [
     CommonModule,
     TeacherRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    FullCalendarModule
   ]
 })
 export class TeacherModule { }

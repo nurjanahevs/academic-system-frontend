@@ -8,6 +8,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+
+FullCalendarModule.registerPlugins([
+  // register FullCalendar plugins
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin,
+]);
 
 @NgModule({
   declarations: [
@@ -22,6 +35,7 @@ import { AngularMaterialModule } from './angular-material.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

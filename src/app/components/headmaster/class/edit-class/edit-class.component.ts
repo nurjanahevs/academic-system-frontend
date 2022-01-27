@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-class',
@@ -50,5 +51,15 @@ export class EditClassComponent implements OnInit {
     this.updateNameClass = false;
     this.updateHomeTeacher = false;
     this.updateAll = true;
+  }
+
+  public onError() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!',
+      showConfirmButton: false,
+      timer: 3000,
+    });
   }
 }

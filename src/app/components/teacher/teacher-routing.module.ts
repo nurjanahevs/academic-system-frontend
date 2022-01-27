@@ -4,6 +4,7 @@ import { AddscoreComponent } from './addscore/addscore.component';
 import { ClassesComponent } from './classes/classes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 import { ScoreComponent } from './score/score.component';
 import { TeacherComponent } from './teacher.component';
 
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'class', component: ClassesComponent },
   { path: 'class/class-detail', component: ClassesComponent },
-  // { path: 'calendar' },
+  { path: 'schedule', component: ScheduleComponent },
 ];
 
 @NgModule({

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-course',
   templateUrl: './edit-course.component.html',
-  styleUrls: ['./edit-course.component.css']
+  styleUrls: ['./edit-course.component.css'],
 })
 export class EditCourseComponent implements OnInit {
   public spinner = false;
@@ -58,5 +59,15 @@ export class EditCourseComponent implements OnInit {
     this.updatePassword = false;
     this.updateBirthday = false;
     this.updateAll = true;
+  }
+
+  public onError() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!',
+      showConfirmButton: false,
+      timer: 3000,
+    });
   }
 }

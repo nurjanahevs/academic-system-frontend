@@ -1,5 +1,3 @@
-<app-header></app-header>
-<app-sidebar></app-sidebar>
 <div class="container col-sm-9 set">
   <div class="container title-form">
     <h2>Update Data Class</h2>
@@ -71,6 +69,7 @@
       <div class="col-auto" *ngIf="updateYearAcademic">
         <button
           type="button"
+          (click)="onError()"
           class="btn btn-success ms-2 mb-2"
           *ngIf="updateAll"
         >
@@ -137,6 +136,7 @@
       <div class="col-auto" *ngIf="updateNameClass">
         <button
           type="button"
+          (click)="onError()"
           class="btn btn-success ms-2 mb-2"
           *ngIf="updateAll"
         >
@@ -209,6 +209,7 @@
       <div class="col-auto" *ngIf="updateHomeTeacher">
         <button
           type="button"
+          (click)="onError()"
           class="btn btn-success ms-2 mb-2"
           *ngIf="updateAll"
         >
@@ -219,6 +220,7 @@
       <div class="container action">
         <button
           type="button"
+          (click)="onError()"
           class="btn btn-success action-1"
           *ngIf="updateYearAcademic && updateNameClass && updateHomeTeacher"
         >
@@ -231,6 +233,14 @@
           *ngIf="!updateYearAcademic && !updateNameClass && !updateHomeTeacher"
         >
           Edit All
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary action-1"
+          routerLink="/headmaster/class"
+          *ngIf="!updateYearAcademic && !updateNameClass && !updateHomeTeacher"
+        >
+          Back
         </button>
         <button
           type="button"

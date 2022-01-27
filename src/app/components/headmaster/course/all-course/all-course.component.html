@@ -1,0 +1,52 @@
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="tabs col-12 shadow">
+      <div class="data">
+        <h3>Course data</h3>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Course name</th>
+            <th scope="col">Code</th>
+            <th scope="col">Teacher</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="teacher-data">
+            <th scope="row" class="id">Science</th>
+            <td class="name">SC</td>
+            <td class="name">Mark</td>
+            <td class="desc">
+              <button
+                class="btn btn-warning"
+                style="color: #ffff"
+                routerLink="/headmaster/course/edit"
+                routerLinkActive="active"
+              >
+                <fa-icon [icon]="faEdit"></fa-icon>Edit
+              </button>
+
+              <button class="btn btn-danger" (click)="onError()">
+                <fa-icon [icon]="faEraser"></fa-icon>delete
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <button
+                class="btn btn-primary"
+                routerLink="/headmaster/course/create"
+                routerLinkActive="active"
+              >
+                Add New Course
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

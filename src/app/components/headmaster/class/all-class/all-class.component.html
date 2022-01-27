@@ -1,0 +1,74 @@
+<div class="content-wrapper">
+  <div class="container-fluid" id="description">
+    <div class="row">
+      <div class="title col-4">
+        <p><strong>Class </strong></p>
+      </div>
+      <div class="is col-2"><p>:</p></div>
+      <div class="desc col-4"><p>IV</p></div>
+    </div>
+    <div class="row">
+      <div class="title col-4">
+        <p><strong> Semester</strong></p>
+      </div>
+      <div class="is col-2"><p>:</p></div>
+      <div class="desc col-4"><p>odd</p></div>
+    </div>
+    <div class="row">
+      <div class="title col-4">
+        <p><strong>HomeroomTeacher </strong></p>
+      </div>
+      <div class="is col-2"><p>:</p></div>
+      <div class="desc col-4"><p>Eva</p></div>
+    </div>
+    <div class="row">
+      <div class="title col-4">
+        <p><strong>Academic Year</strong></p>
+      </div>
+      <div class="is col-2"><p>:</p></div>
+      <div class="desc col-4"><p>2021/2022</p></div>
+    </div>
+    <div class="tabs col-12 shadow">
+      <div class="data">
+        <h3>Class data</h3>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Year of academic</th>
+            <th scope="col">Class</th>
+            <th scope="col">Homeroom Teacher</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="teacher-data">
+            <th scope="row" class="id">2021</th>
+            <td class="name">I</td>
+            <td class="name">Mark</td>
+            <td class="desc">
+              <button class="btn edit btn-warning" style="color: #ffff">
+                <a routerLink="/headmaster/class/edit" routerLinkActive="active"
+                  ><fa-icon [icon]="faEdit"></fa-icon>edit</a
+                >
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <button
+                type="button"
+                class="btn btn-primary"
+                routerLink="/headmaster/class/create"
+                routerLinkActive="active"
+              >
+                Add New Class
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
