@@ -48,7 +48,7 @@ export class ScoreComponent implements OnInit {
     this.userService
       .getScoreClass(academicYear, semester, classes)
       .subscribe((scores:any) => {
-        this.scores = scores[0];
+        this.scores = scores.body[0];
       });
   }
 

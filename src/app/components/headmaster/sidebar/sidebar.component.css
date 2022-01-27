@@ -16,3 +16,6 @@ h6 {
 aside {
   height: 500vh;
 }
+a {
+  cursor: pointer;
+}

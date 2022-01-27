@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TeacherData } from 'src/app/interface/ITeacher';
+import Swal from 'sweetalert2';
 import { HeadmasterService } from '../../headmaster.service';
 
 @Component({
@@ -48,7 +49,6 @@ export class CreateTeacherComponent implements OnInit {
   public onSubmit() {
     const teacher: TeacherData = {
       fullName: this.teacherForm['fullName'].value,
-      password: this.teacherForm['fullName'].value,
       email: this.teacherForm['email'].value,
       birthDate: this.teacherForm['birthDate'].value,
       course: this.teacherForm['course'].value,
@@ -64,16 +64,30 @@ export class CreateTeacherComponent implements OnInit {
         teacher.teachClass
       )
       .subscribe(
-        () => {
+        (res) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Create Teacher Success',
+            text: 'Headmaster to Create Teacher Successfull',
+          });
           this.router.navigate(['/headmaster/teacher']);
         },
-        () => {},
+        () => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        },
         () => {
           this.spinner = false;
         }
       );
-    console.log(teacher);
   }
 
-  public onCancel() {}
+  public onCancel() {
+    this.router.navigate(['/headmaster/teacher']);
+  }
 }

@@ -27,8 +27,9 @@ export class AddscoreComponent implements OnInit {
     if (!this.getScore) {
       this.router.navigate(['/teacher/score']);
     }
-    this.userService.getScoreSpecific(this.getScore.id).subscribe((score) => {
-      this.score = score;
+    this.userService.getScoreSpecific(this.getScore.id).subscribe((score: any) => {
+      this.score = score.body;
+      console.log(score.body)
     });
     this._spinner();
   }

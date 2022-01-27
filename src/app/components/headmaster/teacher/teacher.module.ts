@@ -10,6 +10,7 @@ import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     TeacherRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    SweetAlert2Module
   ]
 })
 export class TeacherModule { }

@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './_services/auth.guard';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: '/login',
-  //   pathMatch: 'full',
-  // },
   {
     path: '',
+    redirectTo: '/login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
     component: LoginComponent,
   },
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       import('./components/teacher/teacher.module').then(
         (m) => m.TeacherModule
       ),
+    // canActivate: [AuthGuard],
   },
   {
     path: 'headmaster',
@@ -25,6 +27,7 @@ const routes: Routes = [
       import('./components/headmaster/headmaster.module').then(
         (m) => m.HeadmasterModule
       ),
+    canActivate: [AuthGuard],
   },
 ];
 

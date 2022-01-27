@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Teacher } from 'src/app/_models/Teacher';
+import { TeacherData } from 'src/app/interface/ITeacher';
 import { ClassesService } from 'src/app/_services/classes.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -10,8 +10,10 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
   styleUrls: ['./classes.component.css'],
 })
 export class ClassesComponent implements OnInit {
-  classes: Teacher = {};
-  getClass: any;
+  classes: TeacherData[] = [];
+  getClass: any = {};
+  getCoursess: any = {};
+  idteacher: any;
   isLoggedIn = false;
 
   constructor(
@@ -28,15 +30,30 @@ export class ClassesComponent implements OnInit {
   onAuth() {
     this.isLoggedIn = !!this.tokenStorage.getToken();
     if (!this.isLoggedIn) {
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
     }
   }
 
   getClassesTeacher() {
-    this.getClass = JSON.parse(this.tokenStorage.getClassTeacher()!);
-    this.classService.getClasses(this.getClass).subscribe((res) => {
+    this.idteacher = this.tokenStorage.getUser();
+    this.classService.getClasses(this.idteacher.user.id).subscribe((res: any) => {
       this.classes = res;
-      console.log(res);
+      console.log(res)
+      this.getclass(res.body.teachClass[0]);
+      this.getCourses(res.body.course);
     });
   }
+
+  getclass(id: string){
+    this.classService.getclass(id).subscribe((res: any)=> {
+      this.getClass = res.body;
+    })
+  }
+
+  getCourses(id: string){
+    this.classService.getCourse(id).subscribe((res) => {
+      this.getCoursess = res.body;
+    })
+  }
+
 }

@@ -26,6 +26,10 @@ export class AuthServiceService {
     return this.token;
   }
 
+  getIsAuth() {
+    return this.isLoggedIn;
+  }
+
   // getAuthStatusListener() {
   //   return this.authStatusListener.asObservable();
   // }
@@ -39,6 +43,8 @@ export class AuthServiceService {
           const token = res.token;
           this.token = token;
           this.isLoggedIn = true;
+          console.log("nyampe sini", this.isLoggedIn);
+          
           this.tokenStorage.saveToken(token);
           this.tokenStorage.saveUser(res);
           console.log(res)
@@ -61,5 +67,6 @@ export class AuthServiceService {
   logout() {
     this.isLoggedIn = false;
     this.tokenStorage.deleteToken();
+    this.router.navigate(['']);
   }
 }

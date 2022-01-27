@@ -22,6 +22,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   imports: [
     CommonModule,
     HeadmasterRoutingModule
+  ],
+  exports: [
+    SidebarComponent
   ]
 })
 export class HeadmasterModule { }

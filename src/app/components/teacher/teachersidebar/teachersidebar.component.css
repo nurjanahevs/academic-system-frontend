@@ -11,3 +11,6 @@ h6 {
   text-transform: uppercase;
   color: #fff;
 }
+a {
+  cursor: pointer;
+}
