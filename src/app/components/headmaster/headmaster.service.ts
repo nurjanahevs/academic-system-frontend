@@ -1,7 +1,12 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ResponseData } from 'src/app/interface/IResponse';
+import {
+  ResDataClass,
+  ResDataStudent,
+  ResponseData,
+} from 'src/app/interface/IResponse';
+import { StudentData } from 'src/app/interface/IStudent';
 import { TeacherData } from 'src/app/interface/ITeacher';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { environment } from 'src/environments/environment';
@@ -13,6 +18,7 @@ const API_URL = environment.API_URL + 'api/';
 })
 export class HeadmasterService {
   teacher: TeacherData[] = [];
+  student: StudentData[] = [];
   constructor(
     private http: HttpClient,
     private tokenStorageService: TokenStorageService
@@ -51,23 +57,52 @@ export class HeadmasterService {
   }
 
   createStudent(
-    email: string,
     fullName: string,
+    email: string,
     birthDate: string,
     classes: string
-  ) {
+  ): Observable<HttpResponse<ResDataStudent>> {
     const studentData = { email, fullName, birthDate, classes };
-    return this.http.post<{ Message: string }>(
+    return this.http.post<ResDataStudent>(
       `${API_URL}headmaster/student/create`,
-      studentData
+      studentData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
     );
   }
 
-  createClass(className: string, yearAcademic: number, semester: string) {
+  getStudent(): Observable<HttpResponse<StudentData[]>> {
+    return this.http.get<StudentData[]>(`${API_URL}headmaster/student`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  createClass(
+    className: string,
+    yearAcademic: number,
+    semester: string
+  ): Observable<HttpResponse<ResDataClass>> {
     const classData = { className, yearAcademic, semester };
-    return this.http.post<{ Message: string }>(
+    console.log(classData)
+    return this.http.post<ResDataClass>(
       `${API_URL}headmaster/class/create`,
-      classData
+      classData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
     );
   }
 }

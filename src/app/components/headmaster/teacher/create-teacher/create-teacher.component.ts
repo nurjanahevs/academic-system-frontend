@@ -69,6 +69,8 @@ export class CreateTeacherComponent implements OnInit {
             icon: 'success',
             title: 'Create Teacher Success',
             text: 'Headmaster to Create Teacher Successfull',
+            showConfirmButton: true,
+            timer: 3000
           });
           this.router.navigate(['/headmaster/teacher']);
         },

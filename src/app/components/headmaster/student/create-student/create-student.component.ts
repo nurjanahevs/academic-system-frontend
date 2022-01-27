@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StudentData } from 'src/app/interface/IStudent';
+import Swal from 'sweetalert2';
 import { HeadmasterService } from '../../headmaster.service';
 
 @Component({
@@ -61,16 +62,32 @@ export class CreateStudentComponent implements OnInit {
         student.classes
       )
       .subscribe(
-        () => {
+        (res) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Create Student Success',
+            text: 'Headmaster to Create Student Successfull',
+            showConfirmButton: true,
+            timer: 3000,
+          });
           this.router.navigate(['/headmaster/student']);
         },
-        () => {},
+        () => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            showConfirmButton: true,
+            timer: 3000,
+          });
+        },
         () => {
           this.spinner = false;
         }
       );
-    console.log(student);
   }
 
-  public onCancel() {}
+  public onCancel() {
+    this.router.navigate(['/headmaster/student']);
+  }
 }

@@ -68,6 +68,7 @@
         <div class="col-auto" *ngIf="updateFullname">
           <button
             type="button"
+            (click)="onSave()"
             class="btn btn-success ms-2 mb-2"
             *ngIf="updateAll"
           >
@@ -134,6 +135,7 @@
         <div class="col-auto" *ngIf="updateEmail">
           <button
             type="button"
+            (click)="onSave()"
             class="btn btn-success ms-2 mb-2"
             *ngIf="updateAll"
           >
@@ -200,6 +202,7 @@
         <div class="col-auto" *ngIf="updatePassword">
           <button
             type="button"
+            (click)="onSave()"
             class="btn btn-success ms-2 mb-2"
             *ngIf="updateAll"
           >
@@ -267,6 +270,7 @@
           <button
             type="button"
             class="btn btn-success ms-2 mb-2"
+            (click)="onSave()"
             *ngIf="updateAll"
           >
             Save
@@ -276,6 +280,7 @@
           <button
             type="button"
             class="btn btn-success action-1"
+            (click)="onSave()"
             *ngIf="
               updateFullname && updateEmail && updatePassword && updateBirthday
             "
@@ -294,6 +299,13 @@
             "
           >
             Edit All
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary action-1"
+            (click)="onBack()"
+          >
+            Back
           </button>
           <button
             type="button"

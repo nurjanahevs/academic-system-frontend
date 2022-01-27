@@ -1,6 +1,6 @@
 <app-header></app-header>
 <app-sidebar></app-sidebar>
-<div class="content-wrapper">
+<!-- <div class="content-wrapper">
   <div class="container-fluid">
     <div class="tabs col-12 shadow">
       <div class="data">
@@ -47,11 +47,11 @@
       <button class="btn btn-primary">Check</button>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="content-wrapper">
   <div class="container-fluid">
-    <div class="row">
+    <!-- <div class="row">
       <div class="title col-4">
         <p><strong>Class </strong></p>
       </div>
@@ -78,7 +78,7 @@
       </div>
       <div class="is col-2"><p>:</p></div>
       <div class="desc col-4"><p>2021/2022</p></div>
-    </div>
+    </div> -->
     <div class="tabs col-12">
       <div class="data">
         <h3>student data</h3>
@@ -86,25 +86,29 @@
       <table class="table">
         <thead>
           <tr>
+            <th scope="col">No</th>
             <th scope="col">NIS</th>
-            <th scope="col">Nama Siswa</th>
-            <th scope="col">Jenis Kelamin</th>
-            <th scope="col">Alamat</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Status</th>
             <th scope="col">Class</th>
             <th scope="col" style>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="teacher-data">
-            <th scope="row" class="id">111</th>
-            <td class="name">Mark</td>
-            <td class="gender">Otto</td>
-            <td class="teach">@mdo</td>
-            <td class="teach">VI</td>
+          <tr class="teacher-data" *ngFor="let item of students; let i = index">
+            <th scope="row" class="id">{{ i + 1 }}</th>
+            <td class="name">{{ item.nis }}</td>
+            <td class="gender">{{ item.fullName }}</td>
+            <td class="teach">{{ item.email }}</td>
+            <td class="teach">{{ item.status }}</td>
+            <td class="teach">{{ item.classes?.className }}</td>
 
             <td class="desc">
               <button class="btn btn-primary" style="color: #ffff">
-                <a routerLink="/headmaster/student/edit" routerLinkActive="active"
+                <a
+                  routerLink="/headmaster/student/edit"
+                  routerLinkActive="active"
                   ><fa-icon [icon]="faEdit"></fa-icon>Edit</a
                 >
               </button>

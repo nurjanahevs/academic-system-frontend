@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-student',
   templateUrl: './edit-student.component.html',
-  styleUrls: ['./edit-student.component.css']
+  styleUrls: ['./edit-student.component.css'],
 })
 export class EditStudentComponent implements OnInit {
   public spinner = false;
@@ -13,7 +15,7 @@ export class EditStudentComponent implements OnInit {
   public updateBirthday = false;
   public updateAll = true;
 
-  constructor() { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this._spinner();
@@ -61,4 +63,17 @@ export class EditStudentComponent implements OnInit {
     this.updateAll = true;
   }
 
+  public onSave() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!',
+      showConfirmButton: false,
+      timer: 3000,
+    });
+  }
+
+  public onBack() {
+    this.router.navigate(['/headmaster/student']);
+  }
 }

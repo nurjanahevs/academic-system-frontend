@@ -1,3 +1,5 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
 <div class="container col-sm-9 set">
   <div class="container title-form">
     <h2>Create New Class</h2>
@@ -13,9 +15,9 @@
         <div class="col-sm-2">
           <select class="form-select" id="yearacademic" formControlName="yearAcademic">
             <option selected disabled value="">Year</option>
-            <option value="1">2018/2019</option>
-            <option value="2">2019/2020</option>
-            <option value="3">2020/2021</option>
+            <option value="'2018/2019'">2018/2019</option>
+            <option value="'2019/2020'">2019/2020</option>
+            <option value="'2020/2021'">2020/2021</option>
           </select>
         </div>
       </div>
@@ -28,8 +30,8 @@
             type="text"
             class="form-control"
             id="nameclass"
-            placeholder="Name class"
-            formControlName="nameclass"
+            placeholder="Example: Class I"
+            formControlName="className"
           />
         </div>
       </div>
@@ -40,8 +42,8 @@
         <div class="col-sm-2">
           <select class="form-select" id="yearacademic" formControlName="semester">
             <option selected disabled value="">Semester</option>
-            <option value="1">Odd</option>
-            <option value="2">Even</option>
+            <option value="Odd">Odd</option>
+            <option value="Even">Even</option>
           </select>
         </div>
       </div>
