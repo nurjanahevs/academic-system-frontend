@@ -17,7 +17,7 @@
         </thead>
         <tbody>
           <tr class="teacher-data" *ngFor="let item of teachers; let i = index">
-            <th scope="row" class="id">{{ i + 1 }}</th>
+            <td scope="row">{{ i + 1 }}</td>
             <td class="name">{{ item._id }}</td>
             <td class="gender">{{ item.fullName }}</td>
             <td class="teach">{{ item.birthDate }}</td>
@@ -28,22 +28,17 @@
               </button>
             </td>
             <td class="desc">
-              <button class="btn btn-warning" style="color: #ffff">
-                <a
-                  routerLink="/headmaster/teacher/edit"
-                  routerLinkActive="active"
-                >
+              <button class="btn btn-warning" style="color: #ffff" (click)="onEdit(item)">
                   <fa-icon [icon]="faEdit"></fa-icon>Edit
-                </a>
               </button>
 
-              <button class="btn btn-danger" (click)="onError()">
+              <!-- <button class="btn btn-danger" (click)="onError()">
                 <fa-icon [icon]="faEraser"></fa-icon>delete
-              </button>
+              </button> -->
             </td>
           </tr>
           <tr>
-            <td>
+            <td colspan="2">
               <button
                 class="btn btn-primary"
                 routerLink="/headmaster/teacher/create"
@@ -52,6 +47,8 @@
                 Add New Teacher
               </button>
             </td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>

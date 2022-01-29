@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ClassData } from 'src/app/interface/IClass';
+import { CourseData } from 'src/app/interface/ICourse';
 import {
   ResDataClass,
   ResDataStudent,
   ResponseData,
 } from 'src/app/interface/IResponse';
 import { StudentData } from 'src/app/interface/IStudent';
-import { TeacherData } from 'src/app/interface/ITeacher';
+import { CourseTeacher, editTeacher, TeacherData } from 'src/app/interface/ITeacher';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { environment } from 'src/environments/environment';
 
@@ -19,6 +21,8 @@ const API_URL = environment.API_URL + 'api/';
 export class HeadmasterService {
   teacher: TeacherData[] = [];
   student: StudentData[] = [];
+  course: CourseData[] = [];
+  class: ClassData[] = [];
   constructor(
     private http: HttpClient,
     private tokenStorageService: TokenStorageService
@@ -26,13 +30,12 @@ export class HeadmasterService {
 
   createTeacher(
     fullName: string,
-    email: string,
+    emailSend: string,
     birthDate: string,
     course: string,
     teachClass: string
   ): Observable<HttpResponse<ResponseData>> {
-    const teacherData = { fullName, email, birthDate, course, teachClass };
-    console.log(teacherData);
+    const teacherData = { fullName, emailSend, birthDate, course, teachClass };
     return this.http.post<ResponseData>(
       `${API_URL}headmaster/teacher/create`,
       teacherData,
@@ -46,8 +49,8 @@ export class HeadmasterService {
     );
   }
 
-  getTeacher(): Observable<HttpResponse<TeacherData[]>> {
-    return this.http.get<TeacherData[]>(`${API_URL}headmaster/teacher`, {
+  getTeacher(): Observable<HttpResponse<CourseTeacher[]>> {
+    return this.http.get<CourseTeacher[]>(`${API_URL}headmaster/teacher`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: this.tokenStorageService.getToken()!,
@@ -56,13 +59,44 @@ export class HeadmasterService {
     });
   }
 
+  getSpesificTeacher(id: string): Observable<HttpResponse<TeacherData>> {
+    return this.http.get<TeacherData>(`${API_URL}headmaster/teacher/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  editTeacher(
+    id: string,
+    fullName: string,
+    birthDate: string,
+    course: any,
+    teachClass: any
+  ): Observable<HttpResponse<editTeacher>> {
+    const teacherData = { fullName, birthDate, course, teachClass };
+    return this.http.put<editTeacher>(
+      `${API_URL}headmaster/teacher/${id}`,
+      teacherData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
   createStudent(
     fullName: string,
-    email: string,
+    emailSend: string,
     birthDate: string,
     classes: string
   ): Observable<HttpResponse<ResDataStudent>> {
-    const studentData = { email, fullName, birthDate, classes };
+    const studentData = { emailSend, fullName, birthDate, classes };
     return this.http.post<ResDataStudent>(
       `${API_URL}headmaster/student/create`,
       studentData,
@@ -92,7 +126,7 @@ export class HeadmasterService {
     semester: string
   ): Observable<HttpResponse<ResDataClass>> {
     const classData = { className, yearAcademic, semester };
-    console.log(classData)
+    console.log(classData);
     return this.http.post<ResDataClass>(
       `${API_URL}headmaster/class/create`,
       classData,
@@ -104,5 +138,25 @@ export class HeadmasterService {
         observe: 'response',
       }
     );
+  }
+
+  getClass(): Observable<HttpResponse<ClassData[]>> {
+    return this.http.get<ClassData[]>(`${API_URL}headmaster/class`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  getCourse(): Observable<HttpResponse<CourseData[]>> {
+    return this.http.get<CourseData[]>(`${API_URL}headmaster/course`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
   }
 }

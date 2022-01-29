@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ClassData } from 'src/app/interface/IClass';
+import { CourseData } from 'src/app/interface/ICourse';
 import { TeacherData } from 'src/app/interface/ITeacher';
 import Swal from 'sweetalert2';
 import { HeadmasterService } from '../../headmaster.service';
@@ -13,6 +15,8 @@ import { HeadmasterService } from '../../headmaster.service';
 export class CreateTeacherComponent implements OnInit {
   createFormTeacher!: FormGroup;
   createTeacher: TeacherData[] = [];
+  courses: CourseData[] = [];
+  class: ClassData[] = [];
   spinner = false;
   constructor(
     private formTeacher: FormBuilder,
@@ -23,6 +27,8 @@ export class CreateTeacherComponent implements OnInit {
   ngOnInit(): void {
     this._spinner();
     this.createTeacherFormInit();
+    this.getCourses();
+    this.getClasses();
   }
 
   public _spinner() {
@@ -34,12 +40,11 @@ export class CreateTeacherComponent implements OnInit {
   private createTeacherFormInit() {
     this.createFormTeacher = this.formTeacher.group({
       fullName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      emailSend: ['', [Validators.required, Validators.email]],
       birthDate: ['', Validators.required],
       course: ['', Validators.required],
       teachClass: ['', Validators.required],
     });
-    console.log(this.createFormTeacher);
   }
 
   get teacherForm() {
@@ -49,7 +54,7 @@ export class CreateTeacherComponent implements OnInit {
   public onSubmit() {
     const teacher: TeacherData = {
       fullName: this.teacherForm['fullName'].value,
-      email: this.teacherForm['email'].value,
+      emailSend: this.teacherForm['emailSend'].value,
       birthDate: this.teacherForm['birthDate'].value,
       course: this.teacherForm['course'].value,
       teachClass: this.teacherForm['teachClass'].value,
@@ -58,7 +63,7 @@ export class CreateTeacherComponent implements OnInit {
     this.headmasterService
       .createTeacher(
         teacher.fullName,
-        teacher.email,
+        teacher.emailSend,
         teacher.birthDate,
         teacher.course,
         teacher.teachClass
@@ -87,6 +92,19 @@ export class CreateTeacherComponent implements OnInit {
           this.spinner = false;
         }
       );
+  }
+
+  public getCourses() {
+    this.headmasterService.getCourse().subscribe((res: any) => {
+      this.courses = res.body;
+    })
+  }
+
+  public getClasses() {
+    this.headmasterService.getClass().subscribe((res: any) => {
+      this.class = res.body;
+      console.log(this.class)
+    })
   }
 
   public onCancel() {

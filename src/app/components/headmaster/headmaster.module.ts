@@ -12,7 +12,7 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { ClassComponent } from './class/class.component';
 import { CreateClassComponent } from './class/create-class/create-class.component';
 import { EditClassComponent } from './class/edit-class/edit-class.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AllClassComponent } from './class/all-class/all-class.component';
 import { CourseComponent } from './course/course.component';
@@ -59,6 +59,7 @@ import { StudentComponent } from './student/student.component';
     CommonModule,
     HeadmasterRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     AngularMaterialModule,
     FontAwesomeModule
   ],

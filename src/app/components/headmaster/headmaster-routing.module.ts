@@ -34,7 +34,7 @@ const routes: Routes = [
       },
       { path: 'allTeacher', component: AllTeacherComponent },
       { path: 'create', component: CreateTeacherComponent },
-      { path: 'edit', component: EditTeacherComponent },
+      { path: 'edit/:id', component: EditTeacherComponent },
     ],
   },
   {

@@ -6,297 +6,80 @@
 
     <div class="container body-form">
       <mat-spinner *ngIf="!spinner" class="spinner"></mat-spinner>
-      <form class="row g-3" *ngIf="spinner">
-        <div class="col-2">
-          <label for="fullname" class="visually-hidden">fullname</label>
-          <input
-            type="text"
-            readonly
-            class="form-control-plaintext"
-            id="fullname"
-            value="Fullname"
-          />
+      <form [formGroup]="editTeacherForm" *ngIf="spinner">
+        <div class="mb-3 row">
+          <label for="fullname" class="col-sm-2 col-form-label">Fullname</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="fullname"
+              formControlName="fullName"
+            />
+          </div>
         </div>
-        <div class="col-8">
-          <label for="fullname-1" class="visually-hidden">fullname-1</label>
-          <input
-            type="text"
-            readonly
-            class="form-control-plaintext"
-            id="fullname-1"
-            value="Hamzah Si Jalu"
-          />
+        <div class="mb-3 row">
+          <label for="email" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input
+              type="email"
+              class="form-control"
+              readonly
+              formControlName="email"
+              id="email"
+            />
+          </div>
         </div>
-        <div class="col-auto">
-          <button
-            type="button"
-            class="btn btn-primary mb-2"
-            (click)="onUpdateFullname()"
-            *ngIf="!updateFullname"
+        <div class="mb-3 row">
+          <label for="birthday" class="col-sm-2 col-form-label">Birthday</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="birthday"
+              formControlName="birthDate"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="course" class="col-sm-2 col-form-label"
+            >Select Course :</label
           >
-            Update
-          </button>
-          <button
-            type="button"
-            class="btn btn-danger mb-2"
-            (click)="onUpdateFullname()"
-            *ngIf="updateFullname && updateAll"
+          <div class="col-sm-5">
+            <select class="form-select" id="course" formControlName="course">
+              <option *ngFor="let item of courses" value="{{ item.course }}">
+                {{ item.course }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="teachClass" class="col-sm-2 col-form-label"
+            >Select Class :</label
           >
-            Cancel
-          </button>
-        </div>
-        <div class="col-2" *ngIf="updateFullname">
-          <label for="fullname-2" class="visually-hidden">fullname-2</label>
-          <input
-            type="text"
-            readonly
-            class="form-control-plaintext"
-            id="fullname-2"
-          />
-        </div>
-        <div class="col-8" *ngIf="updateFullname">
-          <label for="fullname-3" class="visually-hidden">fullname-3</label>
-          <input
-            type="text"
-            class="form-control"
-            id="fullname-3"
-            placeholder="Fullname"
-          />
-        </div>
-        <div class="col-auto" *ngIf="updateFullname">
-          <button
-            type="button"
-            (click)="onSave()"
-            class="btn btn-success ms-2 mb-2"
-            *ngIf="updateAll"
-          >
-            Save
-          </button>
+          <div class="col-sm-3">
+            <select
+              class="form-select"
+              id="teachClass"
+              formControlName="teachClass"
+            >
+              <option
+                *ngFor="let item of classes"
+                value=" {{ item.className }}"
+              >
+                {{ item.className }}
+              </option>
+            </select>
+          </div>
         </div>
 
-        <div class="col-2">
-          <label for="email" class="visually-hidden">email</label>
-          <input
-            type="email"
-            readonly
-            class="form-control-plaintext"
-            id="email"
-            value="Email"
-          />
-        </div>
-        <div class="col-8">
-          <label for="email-1" class="visually-hidden">email-1</label>
-          <input
-            type="email"
-            readonly
-            class="form-control-plaintext"
-            id="email-1"
-            value="venomous.zach@gmail.com"
-          />
-        </div>
-        <div class="col-auto">
-          <button
-            type="button"
-            class="btn btn-primary mb-2"
-            (click)="onUpdateEmail()"
-            *ngIf="!updateEmail"
-          >
-            Update
-          </button>
-          <button
-            type="button"
-            class="btn btn-danger mb-2"
-            (click)="onUpdateEmail()"
-            *ngIf="updateEmail && updateAll"
-          >
-            Cancel
-          </button>
-        </div>
-        <div class="col-2" *ngIf="updateEmail">
-          <label for="email-2" class="visually-hidden">email-2</label>
-          <input
-            type="email"
-            readonly
-            class="form-control-plaintext"
-            id="email-2"
-          />
-        </div>
-        <div class="col-8" *ngIf="updateEmail">
-          <label for="email-3" class="visually-hidden">email-3</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email-3"
-            placeholder="Email"
-          />
-        </div>
-        <div class="col-auto" *ngIf="updateEmail">
-          <button
-            type="button"
-            (click)="onSave()"
-            class="btn btn-success ms-2 mb-2"
-            *ngIf="updateAll"
-          >
-            Save
-          </button>
-        </div>
-
-        <div class="col-2">
-          <label for="password" class="visually-hidden">password</label>
-          <input
-            type="text"
-            readonly
-            class="form-control-plaintext"
-            id="password"
-            value="Password"
-          />
-        </div>
-        <div class="col-8">
-          <label for="password-1" class="visually-hidden">password-1</label>
-          <input
-            type="password"
-            readonly
-            class="form-control-plaintext"
-            id="password-1"
-            value="abcd1234"
-          />
-        </div>
-        <div class="col-auto">
-          <button
-            type="button"
-            class="btn btn-primary mb-2"
-            (click)="onupdatePassword()"
-            *ngIf="!updatePassword"
-          >
-            Update
-          </button>
-          <button
-            type="button"
-            class="btn btn-danger mb-2"
-            (click)="onupdatePassword()"
-            *ngIf="updatePassword && updateAll"
-          >
-            Cancel
-          </button>
-        </div>
-        <div class="col-2" *ngIf="updatePassword">
-          <label for="password-2" class="visually-hidden">password-2</label>
-          <input
-            type="password"
-            readonly
-            class="form-control-plaintext"
-            id="password-2"
-          />
-        </div>
-        <div class="col-8" *ngIf="updatePassword">
-          <label for="password-3" class="visually-hidden">password-3</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password-3"
-            placeholder="Password"
-          />
-        </div>
-        <div class="col-auto" *ngIf="updatePassword">
-          <button
-            type="button"
-            (click)="onSave()"
-            class="btn btn-success ms-2 mb-2"
-            *ngIf="updateAll"
-          >
-            Save
-          </button>
-        </div>
-
-        <div class="col-2">
-          <label for="birthday" class="visually-hidden">birthday</label>
-          <input
-            type="text"
-            readonly
-            class="form-control-plaintext"
-            id="birthday"
-            value="Birthday"
-          />
-        </div>
-        <div class="col-8">
-          <label for="birthday-1" class="visually-hidden">birthday-1</label>
-          <input
-            type="text"
-            readonly
-            class="form-control-plaintext"
-            id="birthday-1"
-            value="16/01/1996"
-          />
-        </div>
-        <div class="col-auto">
-          <button
-            type="button"
-            class="btn btn-primary mb-2"
-            (click)="onUpdateBirthday()"
-            *ngIf="!updateBirthday"
-          >
-            Update
-          </button>
-          <button
-            type="button"
-            class="btn btn-danger mb-2"
-            (click)="onUpdateBirthday()"
-            *ngIf="updateBirthday && updateAll"
-          >
-            Cancel
-          </button>
-        </div>
-        <div class="col-2" *ngIf="updateBirthday">
-          <label for="birthday-2" class="visually-hidden">birthday-2</label>
-          <input
-            type="text"
-            readonly
-            class="form-control-plaintext"
-            id="birthday-2"
-          />
-        </div>
-        <div class="col-8" *ngIf="updateBirthday">
-          <label for="birthday-3" class="visually-hidden">birthday-3</label>
-          <input
-            type="text"
-            class="form-control"
-            id="birthday-3"
-            placeholder="dd/mm/yyyy"
-          />
-        </div>
-        <div class="col-auto" *ngIf="updateBirthday">
-          <button
-            type="button"
-            class="btn btn-success ms-2 mb-2"
-            (click)="onSave()"
-            *ngIf="updateAll"
-          >
-            Save
-          </button>
-        </div>
         <div class="container action">
           <button
             type="button"
             class="btn btn-success action-1"
             (click)="onSave()"
-            *ngIf="
-              updateFullname && updateEmail && updatePassword && updateBirthday
-            "
           >
             Save
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary action-1"
-            (click)="onEditAll()"
-            *ngIf="
-              !updateFullname &&
-              !updateEmail &&
-              !updatePassword &&
-              !updateBirthday
-            "
-          >
-            Edit All
           </button>
           <button
             type="button"
@@ -304,16 +87,6 @@
             (click)="onBack()"
           >
             Back
-          </button>
-          <button
-            type="button"
-            class="btn btn-danger action-1"
-            (click)="onCancelEditAll()"
-            *ngIf="
-              updateFullname && updateEmail && updatePassword && updateBirthday
-            "
-          >
-            Cancel
           </button>
         </div>
       </form>

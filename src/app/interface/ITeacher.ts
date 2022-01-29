@@ -1,9 +1,21 @@
 import { Course } from "../_models/Course";
+import { ClassData } from "./IClass";
 
 export interface TeacherData {
-  _id?: string,
-  email: string;
+  id?: string,
+  email?: string,
+  emailSend: any;
   password?: string,
+  fullName: string,
+  birthDate: string,
+  course: string,
+  teachClass: string,
+  schedule?: string,
+}
+
+export interface editTeacher {
+  _id?: string,
+  email?: string,
   fullName: string,
   birthDate: string,
   course: string,
@@ -12,9 +24,9 @@ export interface TeacherData {
 
 export interface CourseTeacher {
   _id?: string,
-  email: string;
-  fullName: string,
-  birthDate: string,
+  email?: string;
+  fullName?: string,
+  birthDate?: string,
   course?: Array<Course>,
-  teachClass: string,
+  teachClass?: Array<ClassData>,
 }

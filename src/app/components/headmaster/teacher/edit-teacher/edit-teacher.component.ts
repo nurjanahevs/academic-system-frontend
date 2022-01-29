@@ -1,74 +1,125 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ClassData } from 'src/app/interface/IClass';
+import { CourseData } from 'src/app/interface/ICourse';
+import { CourseTeacher, editTeacher } from 'src/app/interface/ITeacher';
 import Swal from 'sweetalert2';
+import { HeadmasterService } from '../../headmaster.service';
 
 @Component({
   selector: 'app-edit-teacher',
   templateUrl: './edit-teacher.component.html',
-  styleUrls: ['./edit-teacher.component.css']
+  styleUrls: ['./edit-teacher.component.css'],
 })
 export class EditTeacherComponent implements OnInit {
-  public spinner = false;
-  public updateFullname = false;
-  public updateEmail = false;
-  public updatePassword = false;
-  public updateBirthday = false;
-  public updateAll = true;
+  spinner = false;
+  editTeacherForm!: FormGroup;
+  teacher: CourseTeacher = {};
+  idTeacher: any;
+  courses!: CourseData[];
+  classes!: ClassData[];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private formTeacher: FormBuilder,
+    private headmasterService: HeadmasterService
+  ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.idTeacher = params['id'];
+    });
     this._spinner();
+    this.getEditTeacher();
+    this.editTeacherFormInit();
+    this.getCourses();
+    this.getClass();
   }
+
   public _spinner() {
     setTimeout(() => {
       this.spinner = true;
     }, 2000);
   }
 
-  public onUpdateFullname() {
-    this.updateFullname = this.updateFullname === false ? true : false;
-    this.updateAll = true;
+  public getEditTeacher() {
+    this.headmasterService
+      .getSpesificTeacher(this.idTeacher)
+      .subscribe((res: any) => {
+        // console.log(res)
+        this.teacherFormControl['fullName'].setValue(res.body.fullName);
+        this.teacherFormControl['email'].setValue(res.body.email);
+        this.teacherFormControl['birthDate'].setValue(res.body.birthDate);
+        this.teacherFormControl['course'].setValue(res.body.course[0].course);
+        this.teacherFormControl['teachClass'].setValue(res.body.teachClass[0].className);
+        // console.log(res.body.teachClass[0].className)
+      });
   }
 
-  public onUpdateEmail() {
-    this.updateEmail = this.updateEmail === false ? true : false;
-    this.updateAll = true;
+  private editTeacherFormInit() {
+    this.editTeacherForm = this.formTeacher.group({
+      fullName: ['', Validators.required],
+      email: [''],
+      birthDate: ['', Validators.required],
+      course: ['', Validators.required],
+      teachClass: ['', Validators.required],
+    });
   }
 
-  public onupdatePassword() {
-    this.updatePassword = this.updatePassword === false ? true : false;
-    this.updateAll = true;
-  }
-
-  public onUpdateBirthday() {
-    this.updateBirthday = this.updateBirthday === false ? true : false;
-    this.updateAll = true;
-  }
-
-  public onEditAll() {
-    this.updateFullname = true;
-    this.updateEmail = true;
-    this.updatePassword = true;
-    this.updateBirthday = true;
-    this.updateAll = false;
-  }
-
-  public onCancelEditAll() {
-    this.updateFullname = false;
-    this.updateEmail = false;
-    this.updatePassword = false;
-    this.updateBirthday = false;
-    this.updateAll = true;
+  get teacherFormControl() {
+    return this.editTeacherForm.controls;
   }
 
   public onSave() {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Something went wrong!',
-      showConfirmButton: false,
-      timer: 3000,
+    const teacher: editTeacher = {
+      fullName: this.teacherFormControl['fullName'].value,
+      birthDate: this.teacherFormControl['birthDate'].value,
+      course: this.teacherFormControl['course'].value,
+      teachClass: this.teacherFormControl['teachClass'].value,
+    };
+    this.headmasterService
+      .editTeacher(
+        this.idTeacher,
+        teacher.fullName,
+        teacher.birthDate,
+        teacher.course,
+        teacher.teachClass
+      )
+      .subscribe(
+        (res) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Update Data Teacher Success',
+            text: 'Headmaster to Update Teacher Data Successfull',
+            showConfirmButton: true,
+            timer: 3000,
+          });
+          this.router.navigate(['/headmaster/teacher']);
+        },
+        () => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      );
+  }
+
+  public getCourses() {
+    this.headmasterService.getCourse().subscribe((res: any) => {
+      this.courses = res.body;
+    });
+  }
+
+  private getClass() {
+    this.headmasterService.getClass().subscribe((res: any) => {
+      this.classes = res.body;
+      console.log(this.classes);
     });
   }
 

@@ -1,4 +1,5 @@
 import { ClassData } from './IClass';
+import { CourseData } from './ICourse';
 import { StudentData } from './IStudent';
 import { TeacherData } from './ITeacher';
 
@@ -12,4 +13,8 @@ export interface ResDataStudent {
 
 export interface ResDataClass {
   Message: ClassData;
+}
+
+export interface ResDataCourse {
+  Message: CourseData
 }

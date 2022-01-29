@@ -35,7 +35,7 @@ export class CreateStudentComponent implements OnInit {
   private createStudentFormInit() {
     this.createFormStudent = this.formStudent.group({
       fullName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      emailSend: ['', [Validators.required, Validators.email]],
       birthDate: ['', Validators.required],
       classes: ['', Validators.required],
     });
@@ -49,7 +49,7 @@ export class CreateStudentComponent implements OnInit {
   public onSubmit() {
     const student: StudentData = {
       fullName: this.studentForm['fullName'].value,
-      email: this.studentForm['email'].value,
+      emailSend: this.studentForm['emailSend'].value,
       birthDate: this.studentForm['birthDate'].value,
       classes: this.studentForm['classes'].value,
     };
@@ -57,7 +57,7 @@ export class CreateStudentComponent implements OnInit {
     this.headmasterService
       .createStudent(
         student.fullName,
-        student.email,
+        student.emailSend,
         student.birthDate,
         student.classes
       )

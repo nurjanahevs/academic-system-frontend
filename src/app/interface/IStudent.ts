@@ -3,7 +3,7 @@ import { ClassData } from "./IClass";
 export interface StudentData {
   id?: string,
   nis?: string,
-  email: string;
+  emailSend: string;
   password?: string,
   fullName: string,
   birthDate: string,
