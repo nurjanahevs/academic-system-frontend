@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faEraser } from '@fortawesome/free-solid-svg-icons';
 import { StudentClass } from 'src/app/interface/IStudent';
+import Swal from 'sweetalert2';
 import { HeadmasterService } from '../../headmaster.service';
 
 @Component({
@@ -15,8 +17,9 @@ export class AllStudentComponent implements OnInit {
   faEdit = faEdit;
   faEraser = faEraser;
   students: StudentClass[] = [];
+  selectedStudent!: StudentClass;
 
-  constructor(private headmasterService: HeadmasterService) {}
+  constructor(private headmasterService: HeadmasterService, private router: Router) {}
 
   ngOnInit(): void {
     this.getStudents();
@@ -25,7 +28,18 @@ export class AllStudentComponent implements OnInit {
   getStudents() {
     this.headmasterService.getStudent().subscribe((res: any) => {
       this.students = res.body;
-      console.log(this.students);
     });
   }
+
+  public onEdit(students: StudentClass) {
+    this.selectedStudent = students;
+    this.router.navigate(['/headmaster/student/edit/' + students._id]);
+  }
+
+  public onDetail(students: StudentClass) {
+    this.selectedStudent = students;
+    this.router.navigate(['/headmaster/student/' + students._id]);
+  }
+
+
 }

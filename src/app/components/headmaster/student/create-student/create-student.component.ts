@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ClassData } from 'src/app/interface/IClass';
 import { StudentData } from 'src/app/interface/IStudent';
 import Swal from 'sweetalert2';
 import { HeadmasterService } from '../../headmaster.service';
@@ -13,6 +14,7 @@ import { HeadmasterService } from '../../headmaster.service';
 export class CreateStudentComponent implements OnInit {
   createFormStudent!: FormGroup;
   createStudent: StudentData[] = [];
+  class: ClassData[] = [];
   spinner = false;
 
   constructor(
@@ -24,6 +26,7 @@ export class CreateStudentComponent implements OnInit {
   ngOnInit(): void {
     this._spinner();
     this.createStudentFormInit();
+    this.getClasses();
   }
 
   public _spinner() {
@@ -38,8 +41,8 @@ export class CreateStudentComponent implements OnInit {
       emailSend: ['', [Validators.required, Validators.email]],
       birthDate: ['', Validators.required],
       classes: ['', Validators.required],
+      semester: ['', Validators.required],
     });
-    console.log(this.createFormStudent);
   }
 
   get studentForm() {
@@ -52,14 +55,15 @@ export class CreateStudentComponent implements OnInit {
       emailSend: this.studentForm['emailSend'].value,
       birthDate: this.studentForm['birthDate'].value,
       classes: this.studentForm['classes'].value,
+      semester: this.studentForm['semester'].value,
     };
-    this.spinner = true;
     this.headmasterService
       .createStudent(
         student.fullName,
         student.emailSend,
         student.birthDate,
-        student.classes
+        student.classes,
+        student.semester,
       )
       .subscribe(
         (res) => {
@@ -81,10 +85,13 @@ export class CreateStudentComponent implements OnInit {
             timer: 3000,
           });
         },
-        () => {
-          this.spinner = false;
-        }
       );
+  }
+
+  public getClasses() {
+    this.headmasterService.getClass().subscribe((res: any) => {
+      this.class = res.body;
+    })
   }
 
   public onCancel() {

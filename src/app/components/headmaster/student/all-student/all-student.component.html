@@ -1,6 +1,5 @@
 <div class="content-wrapper">
   <div class="container-fluid">
-
     <div class="tabs col-12">
       <div class="data">
         <h3>student data</h3>
@@ -17,6 +16,7 @@
             <th scope="col" style>Action</th>
           </tr>
         </thead>
+
         <tbody>
           <tr class="teacher-data" *ngFor="let item of students; let i = index">
             <th scope="row" class="id">{{ i + 1 }}</th>
@@ -25,27 +25,30 @@
             <td class="teach">{{ item.email }}</td>
             <td class="teach">{{ item.status }}</td>
             <td class="teach">{{ item.classes?.className }}</td>
-
-            <td class="desc">
-              <button class="btn btn-primary" style="color: #ffff">
-                <a
-                  routerLink="/headmaster/student/edit"
-                  routerLinkActive="active"
-                  ><fa-icon [icon]="faEdit"></fa-icon>Edit</a
-                >
+            <td class="see">
+              <button class="btn btn-primary" (click)="onDetail(item)">
+                <fa-icon [icon]="faSearch"></fa-icon>
+              </button>
+              <button
+                class="btn btn-warning"
+                style="color: #ffff"
+                (click)="onEdit(item)"
+              >
+                <fa-icon [icon]="faEdit"></fa-icon>Edit
               </button>
             </td>
           </tr>
           <tr>
-            <td>
+            <td colspan="2">
               <button
                 routerLink="/headmaster/student/create"
                 routerLinkActive="active"
                 class="btn btn-primary"
               >
-                Add New Student</button
-              >
+                Add New Student
+              </button>
             </td>
+            <td></td>
           </tr>
         </tbody>
       </table>

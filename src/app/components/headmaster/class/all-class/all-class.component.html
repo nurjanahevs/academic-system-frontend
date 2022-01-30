@@ -1,6 +1,6 @@
 <div class="content-wrapper">
   <div class="container-fluid" id="description">
-    <div class="row">
+    <!-- <div class="row">
       <div class="title col-4">
         <p><strong>Class </strong></p>
       </div>
@@ -27,7 +27,7 @@
       </div>
       <div class="is col-2"><p>:</p></div>
       <div class="desc col-4"><p>2021/2022</p></div>
-    </div>
+    </div> -->
     <div class="tabs col-12 shadow">
       <div class="data">
         <h3>Class data</h3>
@@ -35,28 +35,33 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Year of academic</th>
-            <th scope="col">Class</th>
+            <th scope="col">No</th>
+            <th scope="col">Name Class</th>
+            <th scope="col">Semester</th>
             <th scope="col">Homeroom Teacher</th>
+            <th scope="col">Year Academic</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="teacher-data">
-            <th scope="row" class="id">2021</th>
-            <td class="name">I</td>
-            <td class="name">Mark</td>
+          <tr class="teacher-data" *ngFor="let item of classes; let i=index">
+            <th scope="row" class="id">{{i+1}}</th>
+            <td class="name">{{item.className}}</td>
+            <td class="name">{{item.semester}}</td>
+            <td class="name">{{item.homeTeacher}}</td>
+            <td class="name">{{item.yearAcademic}}</td>
             <td class="desc">
-              <button class="btn edit btn-warning" style="color: #ffff">
-                <a routerLink="/headmaster/class/edit" routerLinkActive="active"
-                  ><fa-icon [icon]="faEdit"></fa-icon>edit</a
-                >
+              <button class="btn btn-primary" (click)="onDetail(item)">
+                <fa-icon [icon]="faSearch"></fa-icon>
+              </button>
+              <button class="btn edit btn-warning" style="color: #ffff" (click)="onEdit(item)">
+                  <fa-icon [icon]="faEdit"></fa-icon>Edit
               </button>
             </td>
           </tr>
 
           <tr>
-            <td>
+            <td colspan="2">
               <button
                 type="button"
                 class="btn btn-primary"
@@ -66,6 +71,7 @@
                 Add New Class
               </button>
             </td>
+            <td></td>
           </tr>
         </tbody>
       </table>

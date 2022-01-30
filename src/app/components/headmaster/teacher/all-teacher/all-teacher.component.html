@@ -23,19 +23,16 @@
             <td class="teach">{{ item.birthDate }}</td>
             <td class="teach" *ngFor="let a of item.course">{{ a.course }}</td>
             <td class="see">
-              <button class="btn btn-primary" (click)="onError()">
-                <a class="saw"><fa-icon [icon]="faSearch"></fa-icon> Check</a>
+              <button class="btn btn-primary" (click)="onDetail(item)">
+                <fa-icon [icon]="faSearch"></fa-icon>
               </button>
-            </td>
-            <td class="desc">
               <button class="btn btn-warning" style="color: #ffff" (click)="onEdit(item)">
-                  <fa-icon [icon]="faEdit"></fa-icon>Edit
-              </button>
-
+                <fa-icon [icon]="faEdit"></fa-icon>Edit
+            </button>
+            </td>
               <!-- <button class="btn btn-danger" (click)="onError()">
                 <fa-icon [icon]="faEraser"></fa-icon>delete
               </button> -->
-            </td>
           </tr>
           <tr>
             <td colspan="2">

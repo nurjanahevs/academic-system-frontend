@@ -38,7 +38,6 @@ export class CreateClassComponent implements OnInit {
       yearAcademic: ['', Validators.required],
       semester: ['', Validators.required],
     });
-    console.log(this.createFormClass);
   }
 
   get classForm() {
@@ -51,7 +50,6 @@ export class CreateClassComponent implements OnInit {
       yearAcademic: this.classForm['yearAcademic'].value,
       semester: this.classForm['semester'].value,
     };
-    this.spinner = true;
     this.headmasterService
       .createClass(classes.className, classes.yearAcademic, classes.semester)
       .subscribe(

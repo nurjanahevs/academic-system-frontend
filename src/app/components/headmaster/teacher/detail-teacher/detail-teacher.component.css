@@ -17,6 +17,10 @@ thead {
   text-align: center;
 }
 
+mat-spinner {
+  margin: 0 auto;
+}
+
 .data {
   border-radius: 10px 10px 0px 0px;
   background-color: #cd1818;
@@ -25,7 +29,7 @@ thead {
   margin-right: -10px;
   border-bottom: 2px solid black;
   text-align: center;
-  color: #fff;
+  color: #ffff;
   padding: 10px;
   text-align: center;
 }
@@ -41,8 +45,9 @@ a {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 14px;
 }
-button {
-  margin-right: 5px;
+
+td{
+  text-align: left;
 }
 
 .see,

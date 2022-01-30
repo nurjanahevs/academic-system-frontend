@@ -1,15 +1,23 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ClassData } from 'src/app/interface/IClass';
+import { ClassData, editClass } from 'src/app/interface/IClass';
 import { CourseData } from 'src/app/interface/ICourse';
 import {
   ResDataClass,
   ResDataStudent,
   ResponseData,
 } from 'src/app/interface/IResponse';
-import { StudentData } from 'src/app/interface/IStudent';
-import { CourseTeacher, editTeacher, TeacherData } from 'src/app/interface/ITeacher';
+import {
+  editStudent,
+  StudentData,
+  StudentSpesific,
+} from 'src/app/interface/IStudent';
+import {
+  CourseTeacher,
+  editTeacher,
+  TeacherData,
+} from 'src/app/interface/ITeacher';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { environment } from 'src/environments/environment';
 
@@ -94,9 +102,10 @@ export class HeadmasterService {
     fullName: string,
     emailSend: string,
     birthDate: string,
-    classes: string
+    classes: string,
+    semester: string
   ): Observable<HttpResponse<ResDataStudent>> {
-    const studentData = { emailSend, fullName, birthDate, classes };
+    const studentData = { emailSend, fullName, birthDate, classes, semester };
     return this.http.post<ResDataStudent>(
       `${API_URL}headmaster/student/create`,
       studentData,
@@ -118,6 +127,39 @@ export class HeadmasterService {
       }),
       observe: 'response',
     });
+  }
+
+  getSpesificStudent(id: string): Observable<HttpResponse<StudentSpesific>> {
+    return this.http.get<StudentSpesific>(
+      `${API_URL}headmaster/student/${id}`,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  editStudent(
+    id: string,
+    fullName: string,
+    birthDate: string,
+    classes: any
+  ): Observable<HttpResponse<editStudent>> {
+    const studentData = { fullName, birthDate, classes };
+    return this.http.put<editStudent>(
+      `${API_URL}headmaster/student/${id}`,
+      studentData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
   }
 
   createClass(
@@ -148,6 +190,36 @@ export class HeadmasterService {
       }),
       observe: 'response',
     });
+  }
+
+  getSpesificClass(_id: string): Observable<HttpResponse<ClassData>> {
+    return this.http.get<ClassData>(`${API_URL}headmaster/class/${_id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  editClass(
+    id: string,
+    className: string,
+    semester: string,
+    yearAcademic: string
+  ): Observable<HttpResponse<editClass>> {
+    const classData = { className, yearAcademic, semester };
+    return this.http.put<editClass>(
+      `${API_URL}headmaster/class/${id}`,
+      classData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
   }
 
   getCourse(): Observable<HttpResponse<CourseData[]>> {

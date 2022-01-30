@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AllClassComponent } from './class/all-class/all-class.component';
 import { ClassComponent } from './class/class.component';
 import { CreateClassComponent } from './class/create-class/create-class.component';
+import { DetailClassComponent } from './class/detail-class/detail-class.component';
 import { EditClassComponent } from './class/edit-class/edit-class.component';
 import { AllCourseComponent } from './course/all-course/all-course.component';
 import { CourseComponent } from './course/course.component';
@@ -12,11 +13,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeadmasterComponent } from './headmaster.component';
 import { AllStudentComponent } from './student/all-student/all-student.component';
 import { CreateStudentComponent } from './student/create-student/create-student.component';
+import { DetailStudentComponent } from './student/detail-student/detail-student.component';
 import { EditStudentComponent } from './student/edit-student/edit-student.component';
 import { StudentRaportComponent } from './student/raport/student-raport.component';
 import { StudentComponent } from './student/student.component';
 import { AllTeacherComponent } from './teacher/all-teacher/all-teacher.component';
 import { CreateTeacherComponent } from './teacher/create-teacher/create-teacher.component';
+import { DetailTeacherComponent } from './teacher/detail-teacher/detail-teacher.component';
 import { EditTeacherComponent } from './teacher/edit-teacher/edit-teacher.component';
 import { TeacherComponent } from './teacher/teacher.component';
 
@@ -35,6 +38,7 @@ const routes: Routes = [
       { path: 'allTeacher', component: AllTeacherComponent },
       { path: 'create', component: CreateTeacherComponent },
       { path: 'edit/:id', component: EditTeacherComponent },
+      { path: ':id', component: DetailTeacherComponent },
     ],
   },
   {
@@ -44,7 +48,8 @@ const routes: Routes = [
       { path: '', redirectTo: '/headmaster/class/allClass', pathMatch: 'full' },
       { path: 'allClass', component: AllClassComponent },
       { path: 'create', component: CreateClassComponent },
-      { path: 'edit', component: EditClassComponent },
+      { path: 'edit/:id', component: EditClassComponent },
+      { path: ':id', component: DetailClassComponent },
     ],
   },
   {
@@ -72,8 +77,9 @@ const routes: Routes = [
       },
       { path: 'allStudent', component: AllStudentComponent },
       { path: 'create', component: CreateStudentComponent },
-      { path: 'edit', component: EditStudentComponent },
+      { path: 'edit/:id', component: EditStudentComponent },
       { path: 'raport', component: StudentRaportComponent },
+      { path: ':id', component: DetailStudentComponent },
     ],
   },
 ];

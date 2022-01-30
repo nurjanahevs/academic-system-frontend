@@ -39,13 +39,8 @@ export class AllTeacherComponent implements OnInit {
     this.router.navigate(['/headmaster/teacher/edit/' + teachers._id]);
   }
 
-  public onError() {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Something went wrong!',
-      showConfirmButton: false,
-      timer: 3000,
-    });
+  public onDetail(teachers: CourseTeacher) {
+    this.selectedTeacher = teachers;
+    this.router.navigate(['/headmaster/teacher/' + teachers._id]);
   }
 }

@@ -48,13 +48,11 @@ export class EditTeacherComponent implements OnInit {
     this.headmasterService
       .getSpesificTeacher(this.idTeacher)
       .subscribe((res: any) => {
-        // console.log(res)
         this.teacherFormControl['fullName'].setValue(res.body.fullName);
         this.teacherFormControl['email'].setValue(res.body.email);
         this.teacherFormControl['birthDate'].setValue(res.body.birthDate);
         this.teacherFormControl['course'].setValue(res.body.course[0].course);
         this.teacherFormControl['teachClass'].setValue(res.body.teachClass[0].className);
-        // console.log(res.body.teachClass[0].className)
       });
   }
 
@@ -119,7 +117,6 @@ export class EditTeacherComponent implements OnInit {
   private getClass() {
     this.headmasterService.getClass().subscribe((res: any) => {
       this.classes = res.body;
-      console.log(this.classes);
     });
   }
 

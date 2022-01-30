@@ -6,17 +6,19 @@
   <div class="container body-form">
     <mat-spinner *ngIf="!spinner" class="spinner"></mat-spinner>
     <form [formGroup]="createFormClass" *ngIf="spinner">
+      
       <div class="mb-3 row">
-        <label for="yearacademic" class="col-sm-2 col-form-label"
+        <label for="yearAcademic" class="col-sm-2 col-form-label"
           >Year Academic</label
         >
-        <div class="col-sm-2">
-          <select class="form-select" id="yearacademic" formControlName="yearAcademic">
-            <option selected disabled value="">Year</option>
-            <option value="'2018/2019'">2018/2019</option>
-            <option value="'2019/2020'">2019/2020</option>
-            <option value="'2020/2021'">2020/2021</option>
-          </select>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="yearAcademic"
+            placeholder="Example: 2022"
+            formControlName="yearAcademic"
+          />
         </div>
       </div>
       <div class="mb-3 row">
@@ -37,12 +39,14 @@
         <label for="semester" class="col-sm-2 col-form-label"
           >Semester</label
         >
-        <div class="col-sm-2">
-          <select class="form-select" id="yearacademic" formControlName="semester">
-            <option selected disabled value="">Semester</option>
-            <option value="Odd">Odd</option>
-            <option value="Even">Even</option>
-          </select>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="semester"
+            placeholder="Example: Odd"
+            formControlName="semester"
+          />
         </div>
       </div>
       <div class="container action">

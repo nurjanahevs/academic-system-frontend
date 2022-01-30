@@ -5,250 +5,53 @@
 
   <div class="container body-form">
     <mat-spinner *ngIf="!spinner" class="spinner"></mat-spinner>
-    <form class="row g-3" *ngIf="spinner">
-      <div class="col-2">
-        <label for="yearacademic" class="visually-hidden">yearacademic</label>
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext"
-          id="yearacademic"
-          value="Year Academic"
-        />
-      </div>
-      <div class="col-7">
-        <label for="yearacademic-1" class="visually-hidden"
-          >yearacademic-1</label
+    <form [formGroup]="editClassForm" class="row g-3 mt-2" *ngIf="spinner">
+      <div class="mb-3 row">
+        <label for="classes" class="col-sm-3 col-form-label"
+          >Select Class</label
         >
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext"
-          id="yearacademic-1"
-          value="2020/2021"
-        />
+        <div class="col-sm-5">
+          <select class="form-select" id="classes" formControlName="className">
+            <option *ngFor="let item of classes" value="{{ item.className }}">{{ item.className }}</option>
+          </select>
+        </div>
       </div>
-      <div class="col-auto">
-        <button
-          type="button"
-          class="btn btn-primary mb-2"
-          (click)="onupdateYearAcademic()"
-          *ngIf="!updateYearAcademic"
-        >
-          Update
-        </button>
-        <button
-          type="button"
-          class="btn btn-danger mb-2"
-          (click)="onupdateYearAcademic()"
-          *ngIf="updateYearAcademic && updateAll"
-        >
-          Cancel
-        </button>
+      <div class="mb-3 row">
+        <label for="semester" class="col-sm-3 col-form-label">Semester</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            id="semester"
+            formControlName="semester"
+          />
+        </div>
       </div>
-      <div class="col-2" *ngIf="updateYearAcademic">
-        <label for="yearacademic" class="visually-hidden">yearacademic</label>
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext"
-          id="yearacademic"
-        />
+      <div class="mb-3 row">
+        <label for="yearAcademic" class="col-sm-3 col-form-label">Year Academic</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            id="yearAcademic"
+            formControlName="yearAcademic"
+          />
+        </div>
       </div>
-      <div class="col-7" *ngIf="updateYearAcademic">
-        <label for="yearacademic-3" class="visually-hidden"
-          >yearacademic-3</label
-        >
-        <select class="form-select" id="yearacademic-3">
-          <option selected disabled value="">Year Academic</option>
-          <option value="1">2018/2019</option>
-          <option value="2">2019/2020</option>
-          <option value="3">2020/2021</option>
-        </select>
-      </div>
-      <div class="col-auto" *ngIf="updateYearAcademic">
-        <button
-          type="button"
-          (click)="onError()"
-          class="btn btn-success ms-2 mb-2"
-          *ngIf="updateAll"
-        >
-          Save
-        </button>
-      </div>
-
-      <div class="col-2">
-        <label for="nameclass" class="visually-hidden">nameclass</label>
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext"
-          id="nameclass"
-          value="Name Class"
-        />
-      </div>
-      <div class="col-7">
-        <label for="nameclass-1" class="visually-hidden">nameclass-1</label>
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext"
-          id="nameclass-1"
-          value="Class A"
-        />
-      </div>
-      <div class="col-auto">
-        <button
-          type="button"
-          class="btn btn-primary mb-2"
-          (click)="onupdateNameClass()"
-          *ngIf="!updateNameClass"
-        >
-          Update
-        </button>
-        <button
-          type="button"
-          class="btn btn-danger mb-2"
-          (click)="onupdateNameClass()"
-          *ngIf="updateNameClass && updateAll"
-        >
-          Cancel
-        </button>
-      </div>
-      <div class="col-2" *ngIf="updateNameClass">
-        <label for="nameclass-2" class="visually-hidden">nameclass-2</label>
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext"
-          id="nameclass-2"
-        />
-      </div>
-      <div class="col-7" *ngIf="updateNameClass">
-        <label for="nameclass-3" class="visually-hidden">nameclass-3</label>
-        <input
-          type="text"
-          class="form-control"
-          id="nameclass-3"
-          placeholder="Name Class"
-        />
-      </div>
-      <div class="col-auto" *ngIf="updateNameClass">
-        <button
-          type="button"
-          (click)="onError()"
-          class="btn btn-success ms-2 mb-2"
-          *ngIf="updateAll"
-        >
-          Save
-        </button>
-      </div>
-
-      <div class="col-2">
-        <label for="homeroomteacher" class="visually-hidden"
-          >homeroomteacher</label
-        >
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext"
-          id="homeroomteacher"
-          value="Homeroom Teacher"
-        />
-      </div>
-      <div class="col-7">
-        <label for="homeroomteacher-1" class="visually-hidden"
-          >homeroomteacher-1</label
-        >
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext"
-          id="homeroomteacher-1"
-          value="Andhika Lurah Detahmetal"
-        />
-      </div>
-      <div class="col-auto">
-        <button
-          type="button"
-          class="btn btn-primary mb-2"
-          (click)="onupdateHomeTeacher()"
-          *ngIf="!updateHomeTeacher"
-        >
-          Update
-        </button>
-        <button
-          type="button"
-          class="btn btn-danger mb-2"
-          (click)="onupdateHomeTeacher()"
-          *ngIf="updateHomeTeacher && updateAll"
-        >
-          Cancel
-        </button>
-      </div>
-      <div class="col-2" *ngIf="updateHomeTeacher">
-        <label for="yearacademic" class="visually-hidden">yearacademic</label>
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext"
-          id="yearacademic"
-        />
-      </div>
-      <div class="col-9" *ngIf="updateHomeTeacher">
-        <label for="yearacademic-3" class="visually-hidden"
-          >yearacademic-3</label
-        >
-        <select class="form-select" id="yearacademic-3">
-          <option selected disabled value="">Homeroom Teacher</option>
-          <option value="1">Nobertus</option>
-          <option value="2">Asto</option>
-          <option value="3">Kinanta</option>
-        </select>
-      </div>
-      <div class="col-auto" *ngIf="updateHomeTeacher">
-        <button
-          type="button"
-          (click)="onError()"
-          class="btn btn-success ms-2 mb-2"
-          *ngIf="updateAll"
-        >
-          Save
-        </button>
-      </div>
-
       <div class="container action">
         <button
           type="button"
-          (click)="onError()"
           class="btn btn-success action-1"
-          *ngIf="updateYearAcademic && updateNameClass && updateHomeTeacher"
+          (click)="onSave()"
         >
           Save
         </button>
         <button
           type="button"
           class="btn btn-primary action-1"
-          (click)="onEditAll()"
-          *ngIf="!updateYearAcademic && !updateNameClass && !updateHomeTeacher"
-        >
-          Edit All
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary action-1"
-          routerLink="/headmaster/class"
-          *ngIf="!updateYearAcademic && !updateNameClass && !updateHomeTeacher"
+          (click)="onBack()"
         >
           Back
-        </button>
-        <button
-          type="button"
-          class="btn btn-danger action-1"
-          (click)="onCancelEditAll()"
-          *ngIf="updateYearAcademic && updateNameClass && updateHomeTeacher"
-        >
-          Cancel
         </button>
       </div>
     </form>

@@ -27,6 +27,9 @@ import { AllStudentComponent } from './student/all-student/all-student.component
 import { CreateStudentComponent } from './student/create-student/create-student.component';
 import { EditStudentComponent } from './student/edit-student/edit-student.component';
 import { StudentComponent } from './student/student.component';
+import { DetailStudentComponent } from './student/detail-student/detail-student.component';
+import { DetailTeacherComponent } from './teacher/detail-teacher/detail-teacher.component';
+import { DetailClassComponent } from './class/detail-class/detail-class.component';
 
 
 @NgModule({
@@ -53,7 +56,10 @@ import { StudentComponent } from './student/student.component';
     CreateStudentComponent,
     EditStudentComponent,
     StudentRaportComponent,
-    StudentComponent
+    StudentComponent,
+    DetailStudentComponent,
+    DetailTeacherComponent,
+    DetailClassComponent
   ],
   imports: [
     CommonModule,
