@@ -30,6 +30,8 @@ import { StudentComponent } from './student/student.component';
 import { DetailStudentComponent } from './student/detail-student/detail-student.component';
 import { DetailTeacherComponent } from './teacher/detail-teacher/detail-teacher.component';
 import { DetailClassComponent } from './class/detail-class/detail-class.component';
+import { DetailCourseComponent } from './course/detail-course/detail-course.component';
+import { SetcourseComponent } from './course/setcourse/setcourse.component';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import { DetailClassComponent } from './class/detail-class/detail-class.componen
     StudentComponent,
     DetailStudentComponent,
     DetailTeacherComponent,
-    DetailClassComponent
+    DetailClassComponent,
+    DetailCourseComponent,
+    SetcourseComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,35 @@
+<div class="container set">
+  <div class="container title-form">
+    <h2>Set Spesific Course</h2>
+  </div>
+
+  <div class="container body-form">
+    <mat-spinner *ngIf="!spinner" class="spinner"></mat-spinner>
+    <form class="row g-3 mt-2" *ngIf="spinner">
+      <div class="mb-3 row">
+        <label for="course" class="col-sm-3 col-form-label"
+          >Select Course</label
+        >
+        <div class="col-sm-5">
+          <select class="form-select" id="course" formControlName="course">
+            <option value=""></option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="teacher" class="col-sm-3 col-form-label"
+          >Select Teacher</label
+        >
+        <div class="col-sm-5">
+          <select class="form-select" id="teacher" formControlName="teacher">
+            <option value=""></option>
+          </select>
+        </div>
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary ms-2 mb-2" (click)="onBack()">Back</button>
+        <button type="button" class="btn btn-success ms-2 mb-2" (click)="onSave()">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

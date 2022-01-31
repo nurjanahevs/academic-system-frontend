@@ -8,7 +8,9 @@ import { EditClassComponent } from './class/edit-class/edit-class.component';
 import { AllCourseComponent } from './course/all-course/all-course.component';
 import { CourseComponent } from './course/course.component';
 import { CreateCourseComponent } from './course/create-course/create-course.component';
+import { DetailCourseComponent } from './course/detail-course/detail-course.component';
 import { EditCourseComponent } from './course/edit-course/edit-course.component';
+import { SetcourseComponent } from './course/setcourse/setcourse.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeadmasterComponent } from './headmaster.component';
 import { AllStudentComponent } from './student/all-student/all-student.component';
@@ -63,7 +65,9 @@ const routes: Routes = [
       },
       { path: 'allCourse', component: AllCourseComponent },
       { path: 'create', component: CreateCourseComponent },
-      { path: 'edit', component: EditCourseComponent },
+      { path: 'edit/:id', component: EditCourseComponent },
+      { path: ':id', component: DetailCourseComponent },
+      { path: 'set/course', component: SetcourseComponent },
     ],
   },
   {

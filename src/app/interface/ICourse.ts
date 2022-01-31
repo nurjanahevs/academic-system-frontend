@@ -1,4 +1,7 @@
-export class CourseData {
+import { TeacherData } from "./ITeacher";
+
+export interface CourseData {
   _id?: string;
-  course?: string;
+  course: string;
+  teacher?: TeacherData;
 }

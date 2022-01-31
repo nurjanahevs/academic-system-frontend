@@ -7,35 +7,28 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Course name</th>
-            <th scope="col">Code</th>
+            <th scope="col">No</th>
+            <th scope="col">Courses</th>
             <th scope="col">Teacher</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="teacher-data">
-            <th scope="row" class="id">Science</th>
-            <td class="name">SC</td>
-            <td class="name">Mark</td>
+          <tr class="teacher-data" *ngFor="let item of courses; let i = index">
+            <th scope="row" class="id">{{ i + 1 }}</th>
+            <td class="name">{{ item.course }}</td>
+            <td class="name">{{ item.teacher?.fullName }}</td>
             <td class="desc">
-              <button
-                class="btn btn-warning"
-                style="color: #ffff"
-                routerLink="/headmaster/course/edit"
-                routerLinkActive="active"
-              >
-                <fa-icon [icon]="faEdit"></fa-icon>Edit
+              <button class="btn btn-primary" (click)="onDetail(item)">
+                <fa-icon [icon]="faSearch"></fa-icon>
               </button>
-
-              <button class="btn btn-danger" (click)="onError()">
-                <fa-icon [icon]="faEraser"></fa-icon>delete
+              <button class="btn btn-warning" style="color: #ffff" (click)="onEdit(item)">
+                <fa-icon [icon]="faEdit"></fa-icon>Edit
               </button>
             </td>
           </tr>
-
           <tr>
-            <td>
+            <td colspan="2">
               <button
                 class="btn btn-primary"
                 routerLink="/headmaster/course/create"
@@ -43,7 +36,11 @@
               >
                 Add New Course
               </button>
+              <button class="btn btn-primary" (click)="onSetCourse()">
+                Set Course Teacher
+              </button>
             </td>
+            <td></td>
           </tr>
         </tbody>
       </table>

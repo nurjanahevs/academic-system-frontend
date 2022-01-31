@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CourseData } from 'src/app/interface/ICourse';
 import Swal from 'sweetalert2';
+import { HeadmasterService } from '../../headmaster.service';
 
 @Component({
   selector: 'app-edit-course',
@@ -7,67 +11,86 @@ import Swal from 'sweetalert2';
   styleUrls: ['./edit-course.component.css'],
 })
 export class EditCourseComponent implements OnInit {
-  public spinner = false;
-  public updateFullname = false;
-  public updateEmail = false;
-  public updatePassword = false;
-  public updateBirthday = false;
-  public updateAll = true;
+  spinner = false;
+  editFormCourse!: FormGroup;
+  idCourse: any;
+  courses: CourseData[] = [];
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private formCourse: FormBuilder,
+    private headmasterService: HeadmasterService
+  ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.idCourse = params['id'];
+    });
     this._spinner();
+    this.getValueCourse();
+    this.editCourseFormInit();
+    this.getCourses();
   }
+
   public _spinner() {
     setTimeout(() => {
       this.spinner = true;
     }, 2000);
   }
 
-  public onUpdateFullname() {
-    this.updateFullname = this.updateFullname === false ? true : false;
-    this.updateAll = true;
+  get courseFormControl() {
+    return this.editFormCourse.controls;
   }
 
-  public onUpdateEmail() {
-    this.updateEmail = this.updateEmail === false ? true : false;
-    this.updateAll = true;
+  public getValueCourse() {
+    this.headmasterService
+      .getSpesificCourse(this.idCourse)
+      .subscribe((res: any) => {
+        this.courseFormControl['course'].setValue(res.body.course);
+      });
   }
 
-  public onupdatePassword() {
-    this.updatePassword = this.updatePassword === false ? true : false;
-    this.updateAll = true;
-  }
-
-  public onUpdateBirthday() {
-    this.updateBirthday = this.updateBirthday === false ? true : false;
-    this.updateAll = true;
-  }
-
-  public onEditAll() {
-    this.updateFullname = true;
-    this.updateEmail = true;
-    this.updatePassword = true;
-    this.updateBirthday = true;
-    this.updateAll = false;
-  }
-
-  public onCancelEditAll() {
-    this.updateFullname = false;
-    this.updateEmail = false;
-    this.updatePassword = false;
-    this.updateBirthday = false;
-    this.updateAll = true;
-  }
-
-  public onError() {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Something went wrong!',
-      showConfirmButton: false,
-      timer: 3000,
+  private editCourseFormInit() {
+    this.editFormCourse = this.formCourse.group({
+      course: ['', Validators.required],
     });
+  }
+
+  private getCourses() {
+    this.headmasterService.getCourse().subscribe((res: any) => {
+      this.courses = res.body;
+    });
+  }
+
+  public onSave() {
+    const course: CourseData = {
+      course: this.courseFormControl['course'].value,
+    };
+    this.headmasterService.editCourse(this.idCourse, course.course).subscribe(
+      (res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Update Data Course Success',
+          text: 'Headmaster to Update Course Data Successfull',
+          showConfirmButton: true,
+          timer: 3000,
+        });
+        this.router.navigate(['/headmaster/course']);
+      },
+      () => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+    );
+  }
+
+  public onBack() {
+    this.router.navigate(['/headmaster/course']);
   }
 }

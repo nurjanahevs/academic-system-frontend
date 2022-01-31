@@ -231,4 +231,32 @@ export class HeadmasterService {
       observe: 'response',
     });
   }
+
+  getSpesificCourse(_id: string): Observable<HttpResponse<CourseData>> {
+    return this.http.get<CourseData>(`${API_URL}headmaster/course/${_id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  editCourse(
+    _id: string,
+    course: string
+  ): Observable<HttpResponse<CourseData>> {
+    const courseData = { course };
+    return this.http.put<CourseData>(
+      `${API_URL}headmaster/course/${_id}`,
+      courseData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
 }

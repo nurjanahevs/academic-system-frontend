@@ -82,11 +82,10 @@ export class EditClassComponent implements OnInit {
       )
       .subscribe(
         (res) => {
-          console.log(res);
           Swal.fire({
             icon: 'success',
-            title: 'Update Data Teacher Success',
-            text: 'Headmaster to Update Teacher Data Successfull',
+            title: 'Update Data Class Success',
+            text: 'Headmaster to Update Class Data Successfull',
             showConfirmButton: true,
             timer: 3000,
           });

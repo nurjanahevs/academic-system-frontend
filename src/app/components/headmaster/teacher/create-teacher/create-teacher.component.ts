@@ -103,7 +103,6 @@ export class CreateTeacherComponent implements OnInit {
   public getClasses() {
     this.headmasterService.getClass().subscribe((res: any) => {
       this.class = res.body;
-      console.log(this.class)
     })
   }
 
