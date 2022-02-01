@@ -2,7 +2,15 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ClassData, editClass } from 'src/app/interface/IClass';
-import { CourseData } from 'src/app/interface/ICourse';
+import { CourseData, setCourse } from 'src/app/interface/ICourse';
+import {
+  editHomeroom,
+  HomeClass,
+  HomeroomData,
+  HomeStudent,
+  HomeTeach,
+} from 'src/app/interface/IHomeroom';
+import { editParent, getParent, ParentData } from 'src/app/interface/IParent';
 import {
   ResDataClass,
   ResDataStudent,
@@ -146,9 +154,10 @@ export class HeadmasterService {
     id: string,
     fullName: string,
     birthDate: string,
-    classes: any
+    classBefore: string,
+    classAfter: string
   ): Observable<HttpResponse<editStudent>> {
-    const studentData = { fullName, birthDate, classes };
+    const studentData = { fullName, birthDate, classBefore, classAfter };
     return this.http.put<editStudent>(
       `${API_URL}headmaster/student/${id}`,
       studentData,
@@ -250,6 +259,157 @@ export class HeadmasterService {
     return this.http.put<CourseData>(
       `${API_URL}headmaster/course/${_id}`,
       courseData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  editCourseSpesific(
+    teacher: TeacherData,
+    courseBefore: string,
+    courseAfter: string
+  ): Observable<HttpResponse<setCourse>> {
+    const editData = { teacher, courseBefore, courseAfter };
+    return this.http.post<setCourse>(
+      `${API_URL}headmaster/course/update-course`,
+      editData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  createParent(
+    emailSend: string,
+    father: string,
+    mother: string,
+    birthDate: string,
+    student: StudentData
+  ): Observable<HttpResponse<ParentData>> {
+    const parentData = { emailSend, father, mother, birthDate, student };
+    return this.http.post<ParentData>(
+      `${API_URL}headmaster/parent/create`,
+      parentData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  getParent(): Observable<HttpResponse<getParent>> {
+    return this.http.get<getParent>(`${API_URL}headmaster/parent`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  getSpesificParent(_id: string): Observable<HttpResponse<getParent>> {
+    return this.http.get<getParent>(`${API_URL}headmaster/parent/${_id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  editParent(
+    _id: string,
+    father: string,
+    mother: string,
+    birthDate: string,
+    student: Array<StudentData>
+  ): Observable<HttpResponse<editParent>> {
+    const parentData = { father, mother, birthDate, student };
+    return this.http.put<editParent>(
+      `${API_URL}headmaster/parent/${_id}`,
+      parentData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  getHomeroom(): Observable<HttpResponse<HomeroomData>> {
+    return this.http.get<HomeroomData>(`${API_URL}headmaster/homeroom`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  getSpesificHomeroom(_id: string): Observable<HttpResponse<HomeroomData>> {
+    return this.http.get<HomeroomData>(`${API_URL}headmaster/homeroom/${_id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  getScoreByHomeroom(_id: string): Observable<HttpResponse<HomeStudent>> {
+    return this.http.get<HomeStudent>(
+      `${API_URL}headmaster/homeroom/student/${_id}`,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  setTeacherForHome(
+    homeroomName: HomeTeach,
+    className: HomeClass
+  ): Observable<HttpResponse<HomeroomData>> {
+    const homeTeacher = { homeroomName, className };
+    return this.http.post<HomeroomData>(
+      `${API_URL}headmaster/homeroom/set-roomteacher`,
+      homeTeacher,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  editHomeroom(
+    _id: string,
+    classBefore: string,
+    classAfter: string
+  ): Observable<HttpResponse<editHomeroom>> {
+    const dataHome = { classBefore, classAfter };
+    return this.http.put<editHomeroom>(
+      `${API_URL}headmaster/homeroom/change/${_id}`,
+      dataHome,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',

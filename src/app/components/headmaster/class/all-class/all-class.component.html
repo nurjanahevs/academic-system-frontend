@@ -48,7 +48,7 @@
             <th scope="row" class="id">{{i+1}}</th>
             <td class="name">{{item.className}}</td>
             <td class="name">{{item.semester}}</td>
-            <td class="name">{{item.homeTeacher}}</td>
+            <td class="name">{{item.homeTeacher?.homeroomName?.fullName}}</td>
             <td class="name">{{item.yearAcademic}}</td>
             <td class="desc">
               <button class="btn btn-primary" (click)="onDetail(item)">

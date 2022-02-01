@@ -30,6 +30,7 @@ export class AllClassComponent implements OnInit {
   public getClasses() {
     this.headmasterService.getClass().subscribe((res: any) => {
       this.classes = res.body;
+      console.log(this.classes)
     });
   }
 

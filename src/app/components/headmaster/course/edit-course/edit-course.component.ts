@@ -93,4 +93,5 @@ export class EditCourseComponent implements OnInit {
   public onBack() {
     this.router.navigate(['/headmaster/course']);
   }
+
 }

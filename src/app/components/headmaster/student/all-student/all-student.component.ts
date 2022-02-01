@@ -25,7 +25,7 @@ export class AllStudentComponent implements OnInit {
     this.getStudents();
   }
 
-  getStudents() {
+  public getStudents() {
     this.headmasterService.getStudent().subscribe((res: any) => {
       this.students = res.body;
     });

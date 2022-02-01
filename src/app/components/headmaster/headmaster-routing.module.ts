@@ -13,6 +13,17 @@ import { EditCourseComponent } from './course/edit-course/edit-course.component'
 import { SetcourseComponent } from './course/setcourse/setcourse.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeadmasterComponent } from './headmaster.component';
+import { AddHometeacherComponent } from './homeroom/add-hometeacher/add-hometeacher.component';
+import { AllHomeroomComponent } from './homeroom/all-homeroom/all-homeroom.component';
+import { DetailHomeroomComponent } from './homeroom/detail-homeroom/detail-homeroom.component';
+import { ScoreHomeroomComponent } from './homeroom/detail-homeroom/score-homeroom/score-homeroom.component';
+import { EditHomeroomComponent } from './homeroom/edit-homeroom/edit-homeroom.component';
+import { HomeroomComponent } from './homeroom/homeroom.component';
+import { AllParentComponent } from './parent/all-parent/all-parent.component';
+import { CreateParentComponent } from './parent/create-parent/create-parent.component';
+import { DetailParentComponent } from './parent/detail-parent/detail-parent.component';
+import { EditParentsComponent } from './parent/edit-parents/edit-parents.component';
+import { ParentComponent } from './parent/parent.component';
 import { AllStudentComponent } from './student/all-student/all-student.component';
 import { CreateStudentComponent } from './student/create-student/create-student.component';
 import { DetailStudentComponent } from './student/detail-student/detail-student.component';
@@ -84,6 +95,37 @@ const routes: Routes = [
       { path: 'edit/:id', component: EditStudentComponent },
       { path: 'raport', component: StudentRaportComponent },
       { path: ':id', component: DetailStudentComponent },
+    ],
+  },
+  {
+    path: 'parent',
+    component: ParentComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/headmaster/parent/allParent',
+        pathMatch: 'full',
+      },
+      { path: 'allParent', component: AllParentComponent },
+      { path: 'create', component: CreateParentComponent },
+      { path: ':id', component: DetailParentComponent },
+      { path: 'edit/:id', component: EditParentsComponent },
+    ],
+  },
+  {
+    path: 'homeroom',
+    component: HomeroomComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/headmaster/homeroom/allHomeroom',
+        pathMatch: 'full',
+      },
+      { path: 'allHomeroom', component: AllHomeroomComponent },
+      { path: ':id', component: DetailHomeroomComponent },
+      { path: ':id/:id', component: ScoreHomeroomComponent },
+      { path: 'set/from-teacher/set', component: AddHometeacherComponent },
+      { path: 'edit/homeroom/:id', component: EditHomeroomComponent },
     ],
   },
 ];

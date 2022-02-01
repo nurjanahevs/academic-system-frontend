@@ -32,6 +32,17 @@ import { DetailTeacherComponent } from './teacher/detail-teacher/detail-teacher.
 import { DetailClassComponent } from './class/detail-class/detail-class.component';
 import { DetailCourseComponent } from './course/detail-course/detail-course.component';
 import { SetcourseComponent } from './course/setcourse/setcourse.component';
+import { ParentComponent } from './parent/parent.component';
+import { AllParentComponent } from './parent/all-parent/all-parent.component';
+import { CreateParentComponent } from './parent/create-parent/create-parent.component';
+import { DetailParentComponent } from './parent/detail-parent/detail-parent.component';
+import { EditParentsComponent } from './parent/edit-parents/edit-parents.component';
+import { HomeroomComponent } from './homeroom/homeroom.component';
+import { AllHomeroomComponent } from './homeroom/all-homeroom/all-homeroom.component';
+import { DetailHomeroomComponent } from './homeroom/detail-homeroom/detail-homeroom.component';
+import { ScoreHomeroomComponent } from './homeroom/detail-homeroom/score-homeroom/score-homeroom.component';
+import { AddHometeacherComponent } from './homeroom/add-hometeacher/add-hometeacher.component';
+import { EditHomeroomComponent } from './homeroom/edit-homeroom/edit-homeroom.component';
 
 
 @NgModule({
@@ -64,6 +75,17 @@ import { SetcourseComponent } from './course/setcourse/setcourse.component';
     DetailClassComponent,
     DetailCourseComponent,
     SetcourseComponent,
+    ParentComponent,
+    AllParentComponent,
+    CreateParentComponent,
+    DetailParentComponent,
+    EditParentsComponent,
+    HomeroomComponent,
+    AllHomeroomComponent,
+    DetailHomeroomComponent,
+    ScoreHomeroomComponent,
+    AddHometeacherComponent,
+    EditHomeroomComponent,
   ],
   imports: [
     CommonModule,

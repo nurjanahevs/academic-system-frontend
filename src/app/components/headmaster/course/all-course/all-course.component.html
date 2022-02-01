@@ -22,7 +22,11 @@
               <button class="btn btn-primary" (click)="onDetail(item)">
                 <fa-icon [icon]="faSearch"></fa-icon>
               </button>
-              <button class="btn btn-warning" style="color: #ffff" (click)="onEdit(item)">
+              <button
+                class="btn btn-warning"
+                style="color: #ffff"
+                (click)="onEdit(item)"
+              >
                 <fa-icon [icon]="faEdit"></fa-icon>Edit
               </button>
             </td>
@@ -37,9 +41,10 @@
                 Add New Course
               </button>
               <button class="btn btn-primary" (click)="onSetCourse()">
-                Set Course Teacher
+                Set Update Course Teacher
               </button>
             </td>
+
             <td></td>
           </tr>
         </tbody>

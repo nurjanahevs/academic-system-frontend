@@ -38,7 +38,6 @@ export class DetailStudentComponent implements OnInit {
       .getSpesificStudent(this.idStudent)
       .subscribe((res: any) => {
         this.students = res.body;
-        console.log(this.students);
       });
   }
 

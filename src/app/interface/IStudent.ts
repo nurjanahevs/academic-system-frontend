@@ -43,5 +43,6 @@ export interface editStudent {
   email?: string,
   fullName: string,
   birthDate: string,
-  classes: ClassData,
+  classBefore: string,
+  classAfter: string,
 }

@@ -44,11 +44,25 @@
           </div>
         </div>
         <div class="mb-3 row">
-          <label for="classes" class="col-sm-2 col-form-label"
-            >Select Class :</label
+          <label for="classBefore" class="col-sm-2 col-form-label"
+            >Previous Class</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              id="classBefore"
+              formControlName="classBefore"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="classAfter" class="col-sm-2 col-form-label"
+            >Select New Class :</label
           >
           <div class="col-sm-3">
-            <select class="form-select" id="classes" formControlName="classes">
+            <select class="form-select" id="classAfter" formControlName="classAfter">
               <option *ngFor="let item of classes" value="{{ item.className }}">
                 {{ item.className }}
               </option>

@@ -47,7 +47,7 @@ export class EditStudentComponent implements OnInit {
         this.studentFormControls['fullName'].setValue(res.body.fullName);
         this.studentFormControls['email'].setValue(res.body.email);
         this.studentFormControls['birthDate'].setValue(res.body.birthDate);
-        this.studentFormControls['classes'].setValue(
+        this.studentFormControls['classBefore'].setValue(
           res.body.classes.className
         );
       });
@@ -58,7 +58,8 @@ export class EditStudentComponent implements OnInit {
       fullName: ['', Validators.required],
       email: [''],
       birthDate: ['', Validators.required],
-      classes: ['', Validators.required],
+      classBefore: ['', Validators.required],
+      classAfter: ['', Validators.required],
     });
   }
 
@@ -70,14 +71,16 @@ export class EditStudentComponent implements OnInit {
     const student: editStudent = {
       fullName: this.studentFormControls['fullName'].value,
       birthDate: this.studentFormControls['birthDate'].value,
-      classes: this.studentFormControls['classes'].value,
+      classBefore: this.studentFormControls['classBefore'].value,
+      classAfter: this.studentFormControls['classAfter'].value,
     };
     this.headmasterService
       .editStudent(
         this.idStudent,
         student.fullName,
         student.birthDate,
-        student.classes
+        student.classBefore,
+        student.classAfter
       )
       .subscribe(
         (res) => {
