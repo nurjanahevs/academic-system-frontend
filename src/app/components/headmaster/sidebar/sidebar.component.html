@@ -34,125 +34,93 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">
-            <i class="nav-icon fas fa-book"></i>
-            <p>
-              Master Data
-              <i class="fas fa-angle-left right"></i>
-            </p>
+          <a
+            routerLink="/headmaster/teacher"
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            <i class="fas fa-chalkboard-teacher nav-icon"></i>
+            <p>Teachers data</p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a
-                routerLink="/headmaster/teacher"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="fas fa-chalkboard-teacher nav-icon"></i>
-                <p>Teachers data</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                routerLink="/headmaster/homeroom"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="fas fa-school nav-icon"></i>
-                <p>Homeroom data</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                routerLink="/headmaster/student"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="fas fa-user-graduate nav-icon"></i>
-                <p>Students data</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                routerLink="/headmaster/parent"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="fas fa-restroom nav-icon"></i>
-                <p>Parent data</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a routerLink="/headmaster/class" routerLinkActive="active" class="nav-link">
-                <i class="fas fa-house-user nav-icon"></i>
-                <p>Class data</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                routerLink="/headmaster/course"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="fas fa-clipboard-list nav-icon"></i>
-                <p>Courses data</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                routerLink="/headmaster/schedule"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="fas fa-calendar-alt nav-icon"></i>
-                <p>Schedule</p>
-              </a>
-            </li>
-          </ul>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link">
-            <i class="nav-icon fas fa-book"></i>
-            <p>
-              Grading
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a
-                routerLink="/gradingCourse"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="fas fa-pencil-alt nav-icon"></i>
-                <p>Courses</p>
-              </a>
-            </li>
-          </ul>
-        </li> -->
         <li class="nav-item">
-          <a class="nav-link">
-            <i class="nav-icon far fa-sticky-note"></i>
-            <p>
-              Report
-              <i class="fas fa-angle-left right"></i>
-            </p>
+          <a
+            routerLink="/headmaster/homeroom"
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            <i class="fas fa-school nav-icon"></i>
+            <p>Homeroom data</p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a
-                routerLink="/headmaster/student/raport"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="fab fa-instalod nav-icon text-danger"></i>
-                <p>Score Raport Student</p>
-              </a>
-            </li>
-          </ul>
         </li>
-
+        <li class="nav-item">
+          <a
+            routerLink="/headmaster/student"
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            <i class="fas fa-user-graduate nav-icon"></i>
+            <p>Students data</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            routerLink="/headmaster/parent"
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            <i class="fas fa-restroom nav-icon"></i>
+            <p>Parent data</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/headmaster/class" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-house-user nav-icon"></i>
+            <p>Class data</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            routerLink="/headmaster/course"
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            <i class="fas fa-clipboard-list nav-icon"></i>
+            <p>Courses data</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            routerLink="/headmaster/score"
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            <i class="fas fa-poll nav-icon"></i>
+            <i class=""></i>
+            <p>Score data</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            routerLink="/headmaster/schedule"
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            <i class="fas fa-calendar-alt nav-icon"></i>
+            <p>Schedule</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            routerLink="/headmaster/grade"
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            <i class="fas fa-list-ol nav-icon"></i>
+            <p>Grade Student</p>
+          </a>
+        </li>
+        
         <li class="nav-header">
           <a class="nav-link" (click)="logout()">
             <i class="nav-icon fas fa-sign-out-alt"></i>

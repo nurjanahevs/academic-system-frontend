@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faEraser } from '@fortawesome/free-solid-svg-icons';
-import { getParent, ParentData } from 'src/app/interface/IParent';
-import { StudentClass } from 'src/app/interface/IStudent';
+import { getParent } from 'src/app/interface/IParent';
 import Swal from 'sweetalert2';
 import { HeadmasterService } from '../../headmaster.service';
 

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ClassData, editClass } from 'src/app/interface/IClass';
 import { CourseData, setCourse } from 'src/app/interface/ICourse';
+import { GradeData } from 'src/app/interface/IGrade';
 import {
   editHomeroom,
   HomeClass,
@@ -16,6 +17,13 @@ import {
   ResDataStudent,
   ResponseData,
 } from 'src/app/interface/IResponse';
+import {
+  addScore,
+  scoreCourse,
+  ScoreData,
+  student,
+  studentScore,
+} from 'src/app/interface/IScore';
 import {
   editStudent,
   StudentData,
@@ -231,6 +239,21 @@ export class HeadmasterService {
     );
   }
 
+  createCourse(course: string): Observable<HttpResponse<CourseData>> {
+    const courseData = { course };
+    return this.http.post<CourseData>(
+      `${API_URL}headmaster/course/create`,
+      courseData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
   getCourse(): Observable<HttpResponse<CourseData[]>> {
     return this.http.get<CourseData[]>(`${API_URL}headmaster/course`, {
       headers: new HttpHeaders({
@@ -410,6 +433,60 @@ export class HeadmasterService {
     return this.http.put<editHomeroom>(
       `${API_URL}headmaster/homeroom/change/${_id}`,
       dataHome,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  getScoreStudent(className: string): Observable<HttpResponse<ScoreData>> {
+    const scoreData = { className };
+    return this.http.post<ScoreData>(`${API_URL}headmaster/score`, scoreData, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  getSpesificScore(_id: string): Observable<HttpResponse<student>> {
+    return this.http.get<student>(`${API_URL}headmaster/score/${_id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  addScoreToStudent(
+    student: string,
+    course: string
+  ): Observable<HttpResponse<addScore>> {
+    const scoreData = { student, course };
+    return this.http.post<addScore>(
+      `${API_URL}headmaster/score/create`,
+      scoreData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  getGradeStudent(className: string): Observable<HttpResponse<GradeData>> {
+    const gradeData = { className };
+    return this.http.post<GradeData>(
+      `${API_URL}headmaster/grade/getGradeStudent`,
+      gradeData,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',

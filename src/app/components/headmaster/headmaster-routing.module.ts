@@ -12,6 +12,8 @@ import { DetailCourseComponent } from './course/detail-course/detail-course.comp
 import { EditCourseComponent } from './course/edit-course/edit-course.component';
 import { SetcourseComponent } from './course/setcourse/setcourse.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AllGradeComponent } from './grade/all-grade/all-grade.component';
+import { GradeComponent } from './grade/grade.component';
 import { HeadmasterComponent } from './headmaster.component';
 import { AddHometeacherComponent } from './homeroom/add-hometeacher/add-hometeacher.component';
 import { AllHomeroomComponent } from './homeroom/all-homeroom/all-homeroom.component';
@@ -24,6 +26,10 @@ import { CreateParentComponent } from './parent/create-parent/create-parent.comp
 import { DetailParentComponent } from './parent/detail-parent/detail-parent.component';
 import { EditParentsComponent } from './parent/edit-parents/edit-parents.component';
 import { ParentComponent } from './parent/parent.component';
+import { AddNewscoreComponent } from './score/add-newscore/add-newscore.component';
+import { AllScoreComponent } from './score/all-score/all-score.component';
+import { DetailScoreComponent } from './score/detail-score/detail-score.component';
+import { ScoreComponent } from './score/score.component';
 import { AllStudentComponent } from './student/all-student/all-student.component';
 import { CreateStudentComponent } from './student/create-student/create-student.component';
 import { DetailStudentComponent } from './student/detail-student/detail-student.component';
@@ -126,6 +132,24 @@ const routes: Routes = [
       { path: ':id/:id', component: ScoreHomeroomComponent },
       { path: 'set/from-teacher/set', component: AddHometeacherComponent },
       { path: 'edit/homeroom/:id', component: EditHomeroomComponent },
+    ],
+  },
+  {
+    path: 'score',
+    component: ScoreComponent,
+    children: [
+      { path: '', redirectTo: '/headmaster/score/allScore', pathMatch: 'full' },
+      { path: 'allScore', component: AllScoreComponent },
+      { path: 'detail-student/:id', component: DetailScoreComponent },
+      { path: 'addScore', component: AddNewscoreComponent },
+    ],
+  },
+  {
+    path: 'grade',
+    component: GradeComponent,
+    children: [
+      { path: '', redirectTo: '/headmaster/grade/allGrade', pathMatch: 'full' },
+      { path: 'allGrade', component: AllGradeComponent },
     ],
   },
 ];

@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HomeroomData, HomeStudent } from 'src/app/interface/IHomeroom';
+import { ActivatedRoute } from '@angular/router';
+import { HomeStudent } from 'src/app/interface/IHomeroom';
 import { HeadmasterService } from '../../../headmaster.service';
 
 @Component({
@@ -14,7 +14,6 @@ export class ScoreHomeroomComponent implements OnInit {
   studentScore!: HomeStudent;
 
   constructor(
-    private router: Router,
     private headmasterService: HeadmasterService,
     private route: ActivatedRoute,
     private location: Location

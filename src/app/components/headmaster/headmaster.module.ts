@@ -43,6 +43,12 @@ import { DetailHomeroomComponent } from './homeroom/detail-homeroom/detail-homer
 import { ScoreHomeroomComponent } from './homeroom/detail-homeroom/score-homeroom/score-homeroom.component';
 import { AddHometeacherComponent } from './homeroom/add-hometeacher/add-hometeacher.component';
 import { EditHomeroomComponent } from './homeroom/edit-homeroom/edit-homeroom.component';
+import { ScoreComponent } from './score/score.component';
+import { AllScoreComponent } from './score/all-score/all-score.component';
+import { DetailScoreComponent } from './score/detail-score/detail-score.component';
+import { AddNewscoreComponent } from './score/add-newscore/add-newscore.component';
+import { GradeComponent } from './grade/grade.component';
+import { AllGradeComponent } from './grade/all-grade/all-grade.component';
 
 
 @NgModule({
@@ -86,6 +92,12 @@ import { EditHomeroomComponent } from './homeroom/edit-homeroom/edit-homeroom.co
     ScoreHomeroomComponent,
     AddHometeacherComponent,
     EditHomeroomComponent,
+    ScoreComponent,
+    AllScoreComponent,
+    DetailScoreComponent,
+    AddNewscoreComponent,
+    GradeComponent,
+    AllGradeComponent,
   ],
   imports: [
     CommonModule,
