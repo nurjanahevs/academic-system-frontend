@@ -4,15 +4,16 @@
   <section id="profilsiswa">
     <div class="container mt-5">
       <div class="card m-auto" style="max-width: 90%">
-        <h2 class="text-center">{{ getClass.className }}</h2>
-        <h2 class="text-center">{{ getClass.semester }}</h2>
-        <h2 class="text-center">{{ getClass.yearAcademic }}</h2>
-        <h2 class="text-center">Course : {{ getCoursess.course }}</h2>
+        <h2 class="text-center" *ngFor="let a of classes?.teachClass">
+          Class : {{ a.className }}<br />
+          Semester : {{ a.semester }}
+        </h2>
+        <h2 class="text-center" *ngFor="let a of classes?.course">Course : {{ a?.course }}</h2>
         <div class="card-body pt-3">
           <table class="table table-responsive-lg table-bordered">
             <thead>
               <tr class="table-range">
-                <th class="text-center">No.</th>
+                <th class="text-center">No</th>
                 <th class="text-center">NIS</th>
                 <th class="text-center">Name</th>
                 <th class="text-center course">Email</th>
@@ -20,12 +21,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let student of getClass.student; let i = index">
-                <td class="text-center numb">{{ i + 1 }}</td>
-                <td class="text-center">{{ student.nis }}</td>
-                <td>{{ student.fullName }}</td>
-                <td class="text-center">{{ student.email }}</td>
-                <td class="text-center">{{ student.status }}</td>
+              <tr *ngFor="let item of classStudent.student; let i=index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item._id }}</td>
+                <td>{{ item.fullName }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.status }}</td>
               </tr>
             </tbody>
           </table>

@@ -17,16 +17,6 @@ export class ClassesService {
     private tokenStorageService: TokenStorageService
   ) {}
 
-  getClasses(id: string): Observable<HttpResponse<TeacherData>> {
-    return this.http.get<TeacherData>(API_URL + 'teacher/teach-class/' + id, {
-      headers: new HttpHeaders({
-        Authorization: this.tokenStorageService.getToken()!,
-      }),
-      responseType: 'json',
-      observe: 'response',
-    });
-  }
-
   getclass(id: string): Observable<HttpResponse<ClassData>> {
     return this.http.get<ClassData>(`${API_URL}teacher/class/${id}`, {
       headers: new HttpHeaders({

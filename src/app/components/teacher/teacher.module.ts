@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { TeachersidebarComponent } from './teachersidebar/teachersidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProfileComponent } from './profile/profile.component';
 import { ClassesComponent } from './classes/classes.component';
 import { ClassdetailComponent } from './classdetail/classdetail.component';
 import { HeaderComponent } from './header/header.component';
@@ -19,6 +18,11 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { NewScoreComponent } from './new-score/new-score.component';
+import { AllscoreStudentComponent } from './new-score/allscore-student/allscore-student.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DetailscoreStudentComponent } from './new-score/detailscore-student/detailscore-student.component';
+import { ManageScoreComponent } from './new-score/manage-score/manage-score.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -35,11 +39,14 @@ FullCalendarModule.registerPlugins([
     AddscoreComponent,
     TeachersidebarComponent,
     DashboardComponent,
-    ProfileComponent,
     ClassesComponent,
     ClassdetailComponent,
     HeaderComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    NewScoreComponent,
+    AllscoreStudentComponent,
+    DetailscoreStudentComponent,
+    ManageScoreComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +54,8 @@ FullCalendarModule.registerPlugins([
     ReactiveFormsModule,
     FormsModule,
     AngularMaterialModule,
-    FullCalendarModule
+    FullCalendarModule,
+    FontAwesomeModule
   ]
 })
 export class TeacherModule { }

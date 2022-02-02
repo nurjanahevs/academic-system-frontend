@@ -1,6 +1,8 @@
 import { Course } from "../_models/Course";
-import { ClassData } from "./IClass";
+import { ClassData, classTeacher } from "./IClass";
 import { CourseData } from "./ICourse";
+import { grade } from "./IGrade";
+import { studentScore } from "./IScore";
 
 export interface TeacherData {
   id?: string,
@@ -21,7 +23,7 @@ export interface teacherSpesific {
   fullName: string,
   birthDate: string,
   course: Array<CourseData>,
-  teachClass: Array<ClassData>,
+  teachClass: Array<classTeacher>,
 }
 
 export interface editTeacher {
@@ -40,4 +42,24 @@ export interface CourseTeacher {
   birthDate?: string,
   course?: Array<Course>,
   teachClass?: Array<ClassData>,
+}
+
+export interface TeacherClassSpesific {
+  _id?: string,
+  email?: string,
+  emailSend: any;
+  password?: string,
+  fullName: string,
+  birthDate: string,
+  course: Array<CourseData>,
+  teachClass: Array<classTeacher>,
+  schedule?: string,
+}
+
+export interface teacherStudent {
+  _id: string;
+  email: string;
+  fullName: string;
+  score: Array<studentScore>;
+  grade: grade;
 }

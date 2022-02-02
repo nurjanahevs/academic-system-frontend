@@ -1,22 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEraser } from '@fortawesome/free-solid-svg-icons';
 import { classTeacher } from 'src/app/interface/IClass';
 import { TeacherClassSpesific } from 'src/app/interface/ITeacher';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
-import { TeacherService } from '../teacher.service';
+import { TeacherService } from '../../teacher.service';
 
 @Component({
-  selector: 'app-classes',
-  templateUrl: './classes.component.html',
-  styleUrls: ['./classes.component.css'],
+  selector: 'app-allscore-student',
+  templateUrl: './allscore-student.component.html',
+  styleUrls: ['./allscore-student.component.css'],
 })
-export class ClassesComponent implements OnInit {
+export class AllscoreStudentComponent implements OnInit {
+  faSearch = faSearch;
+  faEdit = faEdit;
+  faEraser = faEraser;
   classes!: TeacherClassSpesific;
   classStudent: classTeacher = {};
   idteacher: any;
+  selectedStudent: any;
 
   constructor(
     private tokenStorage: TokenStorageService,
-    private teacherService: TeacherService
+    private teacherService: TeacherService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +47,15 @@ export class ClassesComponent implements OnInit {
       .getClassTeacher(this.idteacher.user.teachClass[0]._id)
       .subscribe((res: any) => {
         this.classStudent = res.body;
+        console.log(this.classStudent);
       });
+  }
+
+  public onDetail(classStudent: classTeacher) {
+    this.selectedStudent = classStudent;
+    this.router.navigate([
+      '/teacher/newScore/detailScore-student/' + classStudent._id,
+    ]);
+    console.log(classStudent._id);
   }
 }

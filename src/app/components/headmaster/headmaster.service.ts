@@ -17,13 +17,7 @@ import {
   ResDataStudent,
   ResponseData,
 } from 'src/app/interface/IResponse';
-import {
-  addScore,
-  scoreCourse,
-  ScoreData,
-  student,
-  studentScore,
-} from 'src/app/interface/IScore';
+import { addScore, ScoreData, student } from 'src/app/interface/IScore';
 import {
   editStudent,
   StudentData,
