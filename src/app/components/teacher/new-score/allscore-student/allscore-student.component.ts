@@ -47,7 +47,6 @@ export class AllscoreStudentComponent implements OnInit {
       .getClassTeacher(this.idteacher.user.teachClass[0]._id)
       .subscribe((res: any) => {
         this.classStudent = res.body;
-        console.log(this.classStudent);
       });
   }
 
@@ -56,6 +55,5 @@ export class AllscoreStudentComponent implements OnInit {
     this.router.navigate([
       '/teacher/newScore/detailScore-student/' + classStudent._id,
     ]);
-    console.log(classStudent._id);
   }
 }

@@ -2,7 +2,9 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { classTeacher } from 'src/app/interface/IClass';
+import { grade, setGrade } from 'src/app/interface/IGrade';
 import { student, studentScore } from 'src/app/interface/IScore';
+import { studentSpec } from 'src/app/interface/IStudent';
 import { TeacherData } from 'src/app/interface/ITeacher';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { environment } from 'src/environments/environment';
@@ -71,6 +73,47 @@ export class TeacherService {
     return this.http.put<studentScore>(
       `${API_URL}teacher/score/manageScore/${_id}`,
       scoreData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  getSpesificStudent(_id: string): Observable<HttpResponse<studentSpec>> {
+    return this.http.get<studentSpec>(
+      `${API_URL}teacher/student/grade/${_id}`,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  getAllGrade(): Observable<HttpResponse<grade>> {
+    return this.http.get<grade>(`${API_URL}teacher/student/grade`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  setGradeStudent(
+    grade: string,
+    student: string
+  ): Observable<HttpResponse<setGrade>> {
+    const setGrade = { grade, student };
+    return this.http.post<setGrade>(
+      `${API_URL}teacher/student/grade/setGrade`,
+      setGrade,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',

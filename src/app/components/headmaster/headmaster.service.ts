@@ -420,10 +420,11 @@ export class HeadmasterService {
 
   editHomeroom(
     _id: string,
+    homeroomName: string,
     classBefore: string,
     classAfter: string
   ): Observable<HttpResponse<editHomeroom>> {
-    const dataHome = { classBefore, classAfter };
+    const dataHome = { homeroomName, classBefore, classAfter };
     return this.http.put<editHomeroom>(
       `${API_URL}headmaster/homeroom/change/${_id}`,
       dataHome,

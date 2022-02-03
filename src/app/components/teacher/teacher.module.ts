@@ -23,6 +23,11 @@ import { AllscoreStudentComponent } from './new-score/allscore-student/allscore-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DetailscoreStudentComponent } from './new-score/detailscore-student/detailscore-student.component';
 import { ManageScoreComponent } from './new-score/manage-score/manage-score.component';
+import { YourHomeclassComponent } from './your-homeclass/your-homeclass.component';
+import { GradingStudentComponent } from './grading-student/grading-student.component';
+import { AllgradeStudentComponent } from './grading-student/allgrade-student/allgrade-student.component';
+import { GradestudentDetailComponent } from './grading-student/gradestudent-detail/gradestudent-detail.component';
+import { SetgradeStudentComponent } from './grading-student/setgrade-student/setgrade-student.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -46,7 +51,12 @@ FullCalendarModule.registerPlugins([
     NewScoreComponent,
     AllscoreStudentComponent,
     DetailscoreStudentComponent,
-    ManageScoreComponent
+    ManageScoreComponent,
+    YourHomeclassComponent,
+    GradingStudentComponent,
+    AllgradeStudentComponent,
+    GradestudentDetailComponent,
+    SetgradeStudentComponent
   ],
   imports: [
     CommonModule,

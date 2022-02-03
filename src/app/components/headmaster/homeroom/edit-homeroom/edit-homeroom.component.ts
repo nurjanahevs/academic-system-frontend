@@ -74,6 +74,7 @@ export class EditHomeroomComponent implements OnInit {
     this.headmasterService
       .editHomeroom(
         this.idTeacher,
+        updateData.homeroomName,
         updateData.classBefore,
         updateData.classAfter
       )

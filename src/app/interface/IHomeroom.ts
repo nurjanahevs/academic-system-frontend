@@ -43,7 +43,7 @@ export interface CourseHome {
 
 export interface editHomeroom {
   _id?: string;
-  homeroomName: HomeTeach;
+  homeroomName: string;
   classBefore: string;
   classAfter: string;
 }

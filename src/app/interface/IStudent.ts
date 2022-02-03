@@ -1,4 +1,6 @@
 import { ClassData } from "./IClass";
+import { grade } from "./IGrade";
+import { studentScore } from "./IScore";
 
 export interface StudentData {
   _id?: string,
@@ -45,4 +47,20 @@ export interface editStudent {
   birthDate: string,
   classBefore: string,
   classAfter: string,
+}
+
+export interface studentSpec {
+  _id: string,
+  nis: string,
+  emailSend: string,
+  email: string,
+  password: string,
+  fullName: string,
+  parent: any,
+  birthDate: string,
+  classes: string,
+  status: string,
+  semester: string,
+  score: Array<studentScore>,
+  grade: grade,
 }

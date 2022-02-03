@@ -21,3 +21,7 @@ export interface grade {
   grade?: string;
 }
 
+export interface setGrade {
+  student: string;
+  grade: string;
+}
