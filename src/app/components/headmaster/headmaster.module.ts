@@ -49,6 +49,8 @@ import { DetailScoreComponent } from './score/detail-score/detail-score.componen
 import { AddNewscoreComponent } from './score/add-newscore/add-newscore.component';
 import { GradeComponent } from './grade/grade.component';
 import { AllGradeComponent } from './grade/all-grade/all-grade.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 @NgModule({
@@ -98,6 +100,7 @@ import { AllGradeComponent } from './grade/all-grade/all-grade.component';
     AddNewscoreComponent,
     GradeComponent,
     AllGradeComponent,
+    ScheduleComponent
   ],
   imports: [
     CommonModule,
@@ -105,7 +108,8 @@ import { AllGradeComponent } from './grade/all-grade/all-grade.component';
     ReactiveFormsModule,
     FormsModule,
     AngularMaterialModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FullCalendarModule
   ],
   exports: [
     SidebarComponent,

@@ -26,6 +26,7 @@ import { CreateParentComponent } from './parent/create-parent/create-parent.comp
 import { DetailParentComponent } from './parent/detail-parent/detail-parent.component';
 import { EditParentsComponent } from './parent/edit-parents/edit-parents.component';
 import { ParentComponent } from './parent/parent.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 import { AddNewscoreComponent } from './score/add-newscore/add-newscore.component';
 import { AllScoreComponent } from './score/all-score/all-score.component';
 import { DetailScoreComponent } from './score/detail-score/detail-score.component';
@@ -151,6 +152,10 @@ const routes: Routes = [
       { path: '', redirectTo: '/headmaster/grade/allGrade', pathMatch: 'full' },
       { path: 'allGrade', component: AllGradeComponent },
     ],
+  },
+  {
+    path: 'schedule',
+    component: ScheduleComponent,
   },
 ];
 
