@@ -17,7 +17,7 @@
         <div class="container">
           <div class="card" style="max-width: 100%">
             <div class="header" style="background-color: rgb(216, 0, 0)">
-              <h2 class="text-center">SDN SUKAMAJU</h2>
+              <h2 class="text-center">Profil Student</h2>
             </div>
             <div class="card-body">
               <table class="table table-borderless">
@@ -26,37 +26,37 @@
                     <th scope="row"></th>
                     <td class="fw-bold">ID</td>
                     <td>:</td>
-                    <td>0034</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"></th>
-                    <td class="fw-bold">Number</td>
-                    <td>:</td>
-                    <td>008892844278</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"></th>
-                    <td class="fw-bold">User Name</td>
-                    <td>:</td>
-                    <td>Wiryatama</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"></th>
-                    <td class="fw-bold">Name</td>
-                    <td>:</td>
-                    <td>Andara Wiryatama</td>
+                    <td>{{ students?._id }}</td>
                   </tr>
                   <tr>
                     <th scope="row"></th>
                     <td class="fw-bold">Email</td>
                     <td>:</td>
-                    <td>wiryatama14@gmail.com</td>
+                    <td>{{ students?.email }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td class="fw-bold">FullName</td>
+                    <td>:</td>
+                    <td>{{ students?.fullName }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td class="fw-bold">Status</td>
+                    <td>:</td>
+                    <td>{{ students?.status }}</td>
                   </tr>
                   <tr>
                     <th scope="row"></th>
                     <td class="fw-bold">Class</td>
                     <td>:</td>
-                    <td>V</td>
+                    <td>{{ students?.classes?.className }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td class="fw-bold">Year Academic</td>
+                    <td>:</td>
+                    <td>{{ students?.yearAcademic }}</td>
                   </tr>
                 </tbody>
               </table>

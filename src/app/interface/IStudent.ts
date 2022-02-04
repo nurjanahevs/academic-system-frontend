@@ -64,3 +64,19 @@ export interface studentSpec {
   score: Array<studentScore>,
   grade: grade,
 }
+export interface studentGetData {
+  _id: string,
+  nis: string,
+  emailSend: string,
+  email: string,
+  password: string,
+  fullName: string,
+  parent: any,
+  birthDate: string,
+  classes: any,
+  status: string,
+  semester: string,
+  score: Array<studentScore>,
+  grade: grade,
+  yearAcademic: string,
+}
