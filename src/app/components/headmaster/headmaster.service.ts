@@ -17,6 +17,7 @@ import {
   ResDataStudent,
   ResponseData,
 } from 'src/app/interface/IResponse';
+import { Schedule } from 'src/app/interface/ISchedule';
 import { addScore, ScoreData, student } from 'src/app/interface/IScore';
 import {
   editStudent,
@@ -491,4 +492,34 @@ export class HeadmasterService {
       }
     );
   }
+
+  addNewSchedule(
+    title: string,
+    start: Date,
+    end: Date,
+    classes: string,
+    daysOfWeek: string,
+    allDay: Boolean
+  ): Observable<HttpResponse<Schedule>> {
+    const scheduleData = {
+      title,
+      start,
+      end,
+      classes,
+      daysOfWeek,
+      allDay,
+    };
+    return this.http.post<Schedule>(
+      `${API_URL}headmaster/calendar/create`,
+      scheduleData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
 }

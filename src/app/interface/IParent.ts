@@ -1,4 +1,4 @@
-import { StudentData } from "./IStudent";
+import { StudentData, studentGetData } from './IStudent';
 
 export interface ParentData {
   email?: string;
@@ -29,4 +29,14 @@ export interface editParent {
   mother: string;
   birthDate: string;
   student: Array<StudentData>;
+}
+
+export interface IParent {
+  _id: string;
+  email: string;
+  father: string;
+  mother: string;
+  role: string;
+  status: string;
+  student: Array<studentGetData>;
 }

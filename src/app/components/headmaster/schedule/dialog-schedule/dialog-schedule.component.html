@@ -1,0 +1,151 @@
+<h2>Add New Schedule</h2>
+<form [formGroup]="dialogFormSchedule">
+  <div class="row">
+    <div>
+      <label for="title" class="col-form-label">Title Activity</label>
+      <div class="col-sm-12">
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          formControlName="title"
+        />
+      </div>
+    </div>
+    <div>
+      <label for="start" class="col-form-label">Start Time Activity</label>
+      <div class="col-sm-12">
+        <input
+          type="datetime-local"
+          class="form-control"
+          id="start"
+          formControlName="start"
+        />
+      </div>
+    </div>
+    <div class="mt-2 mb-4">
+      <label for="end" class="col-form-label">End Time Activity</label>
+      <div class="col-sm-12">
+        <input
+          type="datetime-local"
+          class="form-control"
+          id="end"
+          formControlName="end"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="classes" class="col-sm-4 col-form-label">Select Class</label>
+      <div class="col-sm-8">
+        <select class="form-select" id="classes" formControlName="classes">
+          <option *ngFor="let item of class" [value]="item.className">
+            {{ item.className }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="classes" class="col-sm-4 col-form-label">Days of Week</label>
+      <div class="col-sm-3">
+        <select class="form-select" id="classes" formControlName="classes">
+          <option *ngFor="let item of daysOfWeek" [value]="item.value">
+            {{ item.repeat }}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-4 p-2 ms-2">
+        <mat-checkbox formControlName="allDay"> All Day </mat-checkbox>
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <button class="btn btn-primary" (click)="onSave()">Save Schedule</button>
+  </div>
+</form>
+
+<!-- <div class="col-md-4 row">
+  <mat-form-field appearance="fill">
+    <mat-label>On Week</mat-label>
+    <mat-select name="daysOfWeek" formControlName="daysOfWeek">
+      <mat-option *ngFor="let item of daysOfWeek" [value]="item.value">
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div> -->
+<!-- <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Activity" formControlName="title" />
+      </mat-form-field>
+    </div> -->
+
+<!-- 
+[(ngModel)]="selectedStartTime"
+[(ngModel)]="selectedClass"
+[(ngModel)]="selectedEndTime"
+[(ngModel)]="selectedRepeat" -->
+<!-- <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a Start - End Activity</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input type="datetime-local" matStartDate formControlName="start" />
+          <input type="datetime-local" matEndDate formControlName="end" />
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <mat-error
+          *ngIf="
+            dialogFormSchedule.controls['start'].hasError('matStartDateInvalid')
+          "
+          >Invalid start date</mat-error
+        >
+        <mat-error
+          *ngIf="
+            dialogFormSchedule.controls['end'].hasError('matEndDateInvalid')
+          "
+          >Invalid end date</mat-error
+        >
+      </mat-form-field>
+    </div> -->
+<!-- <div class="row">
+
+    </div> -->
+<!-- <div class="col-md-6 row">
+      <mat-form-field appearance="fill">
+        <mat-label>End Time</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div> -->
+<!-- <div class="col-md-6 row">
+      <mat-form-field appearance="fill">
+        <mat-label>Start Time</mat-label>
+        <mat-select name="startTime" formControlName="end"> 
+          <mat-option *ngFor="let item of startTime" [value]="item.value">
+            {{ item.time }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div> -->
+<!-- <div class="col-md-6 row">
+      <mat-form-field appearance="fill">
+        <mat-label>End Time</mat-label>
+        <mat-select name="endTime" formControlName="endTime">
+          <mat-option *ngFor="let item of endTime" [value]="item.value">
+            {{ item.time }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div> -->
+<!-- <div class="col-md-8 row">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Class</mat-label>
+        <mat-select name="class" formControlName="classes">
+          <mat-option *ngFor="let item of class" [value]="item.className">
+            {{ item.className }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div> -->

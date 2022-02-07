@@ -26,7 +26,6 @@ export class DashboardComponent implements OnInit {
     const _idStudent = this.idStudent.user.id;
     this.studentService.getStudentData(_idStudent).subscribe((res: any) => {
       this.students = res.body;
-      console.log(this.students);
     });
   }
 }

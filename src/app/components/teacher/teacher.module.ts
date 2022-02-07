@@ -28,6 +28,8 @@ import { GradingStudentComponent } from './grading-student/grading-student.compo
 import { AllgradeStudentComponent } from './grading-student/allgrade-student/allgrade-student.component';
 import { GradestudentDetailComponent } from './grading-student/gradestudent-detail/gradestudent-detail.component';
 import { SetgradeStudentComponent } from './grading-student/setgrade-student/setgrade-student.component';
+import { AllscheduleTeacherComponent } from './schedule/allschedule-teacher/allschedule-teacher.component';
+import { DetailscheduleTeacherComponent } from './schedule/detailschedule-teacher/detailschedule-teacher.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -56,7 +58,9 @@ FullCalendarModule.registerPlugins([
     GradingStudentComponent,
     AllgradeStudentComponent,
     GradestudentDetailComponent,
-    SetgradeStudentComponent
+    SetgradeStudentComponent,
+    AllscheduleTeacherComponent,
+    DetailscheduleTeacherComponent
   ],
   imports: [
     CommonModule,

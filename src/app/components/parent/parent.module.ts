@@ -15,6 +15,10 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import { StudentprofileParentComponent } from './parent-student/studentprofile-parent/studentprofile-parent.component';
+import { SchedulestudentParentComponent } from './parent-student/schedulestudent-parent/schedulestudent-parent.component';
+import { AllscheduleParentComponent } from './parent-schedule/allschedule-parent/allschedule-parent.component';
+import { DetailscheduleParentComponent } from './parent-schedule/detailschedule-parent/detailschedule-parent.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -33,7 +37,11 @@ FullCalendarModule.registerPlugins([
     ParentDashboardComponent,
     ParentScheduleComponent,
     ParentStudentComponent,
-    ParentRaportComponent
+    ParentRaportComponent,
+    StudentprofileParentComponent,
+    SchedulestudentParentComponent,
+    AllscheduleParentComponent,
+    DetailscheduleParentComponent
   ],
   imports: [
     CommonModule,

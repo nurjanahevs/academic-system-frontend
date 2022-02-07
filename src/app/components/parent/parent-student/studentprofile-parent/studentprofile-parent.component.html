@@ -1,0 +1,41 @@
+<div class="content-wrapper">
+  <section id="profilsiswa">
+    <div class="container-fluid">
+      <div class="card m-auto" style="max-width: 100%">
+        <div class="text-center">
+          <h1 class="display-4 pb-4 pt-5">Profile Your Student</h1>
+        </div>
+        <div class="card-body">
+          <table
+            class="table table-responsive-lg table-bordered"
+            style="width: 100%"
+            *ngFor="let item of parents?.student"
+          >
+            <tbody>
+              <tr>
+                <th scope="row">ID</th>
+                <td colspan="3">{{ item._id }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Student</th>
+                <td colspan="3">{{ item.fullName }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Email</th>
+                <td colspan="2">{{ item.email }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Class</th>
+                <td colspan="2">{{ item.classes.className }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Status</th>
+                <td colspan="2">{{ item.status }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -11,6 +11,8 @@ import { AllscoreStudentComponent } from './new-score/allscore-student/allscore-
 import { DetailscoreStudentComponent } from './new-score/detailscore-student/detailscore-student.component';
 import { ManageScoreComponent } from './new-score/manage-score/manage-score.component';
 import { NewScoreComponent } from './new-score/new-score.component';
+import { AllscheduleTeacherComponent } from './schedule/allschedule-teacher/allschedule-teacher.component';
+import { DetailscheduleTeacherComponent } from './schedule/detailschedule-teacher/detailschedule-teacher.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ScoreComponent } from './score/score.component';
 import { YourHomeclassComponent } from './your-homeclass/your-homeclass.component';
@@ -22,7 +24,19 @@ const routes: Routes = [
   { path: 'score/add-score', component: AddscoreComponent },
   { path: 'class', component: ClassesComponent },
   { path: 'class/class-detail', component: ClassesComponent },
-  { path: 'schedule', component: ScheduleComponent },
+  {
+    path: 'schedule',
+    component: ScheduleComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/teacher/schedule/allSchedule',
+        pathMatch: 'full',
+      },
+      { path: 'allSchedule', component: AllscheduleTeacherComponent },
+      { path: 'detailSchedule/:id', component: DetailscheduleTeacherComponent },
+    ],
+  },
   {
     path: 'newScore',
     component: NewScoreComponent,

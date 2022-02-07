@@ -26,6 +26,8 @@ import { CreateParentComponent } from './parent/create-parent/create-parent.comp
 import { DetailParentComponent } from './parent/detail-parent/detail-parent.component';
 import { EditParentsComponent } from './parent/edit-parents/edit-parents.component';
 import { ParentComponent } from './parent/parent.component';
+import { AllscheduleComponent } from './schedule/allschedule/allschedule.component';
+import { DetailScheduleComponent } from './schedule/detail-schedule/detail-schedule.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { AddNewscoreComponent } from './score/add-newscore/add-newscore.component';
 import { AllScoreComponent } from './score/all-score/all-score.component';
@@ -156,6 +158,15 @@ const routes: Routes = [
   {
     path: 'schedule',
     component: ScheduleComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/headmaster/schedule/allSchedule',
+        pathMatch: 'full',
+      },
+      { path: 'allSchedule', component: AllscheduleComponent },
+      { path: 'detailSchedule/:id', component: DetailScheduleComponent },
+    ],
   },
 ];
 

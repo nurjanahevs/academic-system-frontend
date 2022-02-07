@@ -14,6 +14,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ReportComponent } from './report/report.component';
+import { AllstudentScheduleComponent } from './schedule/allstudent-schedule/allstudent-schedule.component';
+import { DetailstudentScheduleComponent } from './schedule/detailstudent-schedule/detailstudent-schedule.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -31,6 +33,8 @@ FullCalendarModule.registerPlugins([
     HeaderComponent,
     ScheduleComponent,
     ReportComponent,
+    AllstudentScheduleComponent,
+    DetailstudentScheduleComponent,
   ],
   imports: [
     CommonModule,

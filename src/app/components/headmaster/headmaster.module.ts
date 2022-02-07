@@ -51,6 +51,9 @@ import { GradeComponent } from './grade/grade.component';
 import { AllGradeComponent } from './grade/all-grade/all-grade.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { DialogScheduleComponent } from './schedule/dialog-schedule/dialog-schedule.component';
+import { DetailScheduleComponent } from './schedule/detail-schedule/detail-schedule.component';
+import { AllscheduleComponent } from './schedule/allschedule/allschedule.component';
 
 
 @NgModule({
@@ -100,7 +103,10 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     AddNewscoreComponent,
     GradeComponent,
     AllGradeComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    DialogScheduleComponent,
+    DetailScheduleComponent,
+    AllscheduleComponent,
   ],
   imports: [
     CommonModule,
