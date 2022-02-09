@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClassData } from 'src/app/interface/IClass';
-import { Schedule } from 'src/app/interface/ISchedule';
+import { Schedule, scheduleSpesific } from 'src/app/interface/ISchedule';
+import Swal from 'sweetalert2';
 import { HeadmasterService } from '../../headmaster.service';
-import { daysOfWeek, endTime, startTime } from './time';
+import { daysOfWeek } from './time';
 
 @Component({
   selector: 'app-dialog-schedule',
@@ -11,63 +12,6 @@ import { daysOfWeek, endTime, startTime } from './time';
   styleUrls: ['./dialog-schedule.component.css'],
 })
 export class DialogScheduleComponent implements OnInit {
-  selectedStartTime!: String;
-  selectedEndTime!: String;
-  selectedClass!: String;
-  selectedRepeat!: String;
-  startTime: startTime[] = [
-    { time: '00:00', value: '00:00' },
-    { time: '01:00', value: '01:00' },
-    { time: '02:00', value: '02:00' },
-    { time: '03:00', value: '03:00' },
-    { time: '04:00', value: '04:00' },
-    { time: '05:00', value: '05:00' },
-    { time: '06:00', value: '06:00' },
-    { time: '07:00', value: '07:00' },
-    { time: '08:00', value: '08:00' },
-    { time: '09:00', value: '09:00' },
-    { time: '10:00', value: '10:00' },
-    { time: '11:00', value: '11:00' },
-    { time: '12:00', value: '12:00' },
-    { time: '01:00', value: '01:00' },
-    { time: '02:00', value: '02:00' },
-    { time: '03:00', value: '03:00' },
-    { time: '04:00', value: '04:00' },
-    { time: '05:00', value: '05:00' },
-    { time: '06:00', value: '06:00' },
-    { time: '07:00', value: '07:00' },
-    { time: '08:00', value: '08:00' },
-    { time: '09:00', value: '09:00' },
-    { time: '10:00', value: '10:00' },
-    { time: '11:00', value: '11:00' },
-    
-  ];
-  endTime: endTime[] = [
-    { time: '00:00', value: '00:00' },
-    { time: '01:00', value: '01:00' },
-    { time: '02:00', value: '02:00' },
-    { time: '03:00', value: '03:00' },
-    { time: '04:00', value: '04:00' },
-    { time: '05:00', value: '05:00' },
-    { time: '06:00', value: '06:00' },
-    { time: '07:00', value: '07:00' },
-    { time: '08:00', value: '08:00' },
-    { time: '09:00', value: '09:00' },
-    { time: '10:00', value: '10:00' },
-    { time: '11:00', value: '11:00' },
-    { time: '12:00', value: '12:00' },
-    { time: '01:00', value: '01:00' },
-    { time: '02:00', value: '02:00' },
-    { time: '03:00', value: '03:00' },
-    { time: '04:00', value: '04:00' },
-    { time: '05:00', value: '05:00' },
-    { time: '06:00', value: '06:00' },
-    { time: '07:00', value: '07:00' },
-    { time: '08:00', value: '08:00' },
-    { time: '09:00', value: '09:00' },
-    { time: '10:00', value: '10:00' },
-    { time: '11:00', value: '11:00' },
-  ];
   class: ClassData[] = [];
   daysOfWeek: daysOfWeek[] = [
     { repeat: '0', value: '' },
@@ -80,6 +24,11 @@ export class DialogScheduleComponent implements OnInit {
     { repeat: '7', value: '7' },
   ];
   dialogFormSchedule!: FormGroup;
+  getCalendar!: scheduleSpesific[];
+  errorSameTitile = false;
+  errorSameStart = false;
+  errorSameEnd = false;
+  errorSameClass = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -90,6 +39,7 @@ export class DialogScheduleComponent implements OnInit {
     this.formDialogInit();
     this.setValueSchedule();
     this.getClasses();
+    this.getValueValidation();
   }
 
   public formDialogInit() {
@@ -97,7 +47,6 @@ export class DialogScheduleComponent implements OnInit {
       title: ['', Validators.required],
       start: ['', Validators.required],
       end: ['', Validators.required],
-      // endTime: ['', Validators.required],
       classes: ['', Validators.required],
       daysOfWeek: ['', [Validators.min(0), Validators.max(7)]],
       allDay: [''],
@@ -114,59 +63,101 @@ export class DialogScheduleComponent implements OnInit {
     });
   }
 
+  public getValueValidation() {
+    this.headmasterService.getAllSchedule().subscribe((res: any) => {
+      this.getCalendar = res.body;
+      console.log(this.getCalendar);
+      for (let key in this.getCalendar) {
+        console.log(this.getCalendar[key]);
+      }
+    });
+  }
+
   public setValueSchedule() {
     this.formDialogControls['daysOfWeek'].setValue(null);
     this.formDialogControls['allDay'].setValue(false);
   }
 
   public onSave() {
-    const schedule: Schedule = {
-      title: this.formDialogControls['title'].value,
-      start: this.formDialogControls['start'].value,
-      end: this.formDialogControls['end'].value,
-      // endTime: this.formDialogControls['endTime'].value,
-      classes: this.formDialogControls['classes'].value,
-      daysOfWeek: this.formDialogControls['daysOfWeek'].value,
-      allDay: this.formDialogControls['allDay'].value,
-    };
-    this.headmasterService
-      .addNewSchedule(
-        schedule.title,
-        schedule.start,
-        schedule.end,
-        // schedule.endTime,
-        schedule.classes,
-        schedule.daysOfWeek,
-        schedule.allDay
-      )
-      .subscribe((res: any) => {
-        console.log(res);
-        console.log(this.dialogFormSchedule);
-      });
+    for (let key in this.getCalendar) {
+      if (
+        this.getCalendar[key].title ===
+          this.formDialogControls['title'].value ||
+        this.getCalendar[key].classes?.className ===
+          this.formDialogControls['classes'].value ||
+        this.getCalendar[key].start ===
+          this.formDialogControls['start'].value ||
+        this.getCalendar[key].end === this.formDialogControls['end'].value
+      ) {
+        this.errorSameTitile = true;
+        setTimeout(() => {
+          this.errorSameTitile = false;
+        }, 2500);
+        // for (let key in this.getCalendar) {
+        //   if (
+        //     this.getCalendar[key].title ===
+        //       this.formDialogControls['title'].value ||
+        //     this.getCalendar[key].classes?.className ===
+        //       this.formDialogControls['classes'].value ||
+        //     this.getCalendar[key].start ===
+        //       this.formDialogControls['start'].value ||
+        //     this.getCalendar[key].end === this.formDialogControls['end'].value
+        //   ) {
+        //     this.errorSameTitile = true;
+        //     setTimeout(() => {
+        //       this.errorSameTitile = false;
+        //     }, 2500);
+        // if (
+        //   this.getCalendar[key].title ===
+        //     this.formDialogControls['title'].value &&
+        //   this.getCalendar[key].classes.className ===
+        //     this.formDialogControls['classes'].value
+        // ) {
+        //   this.errorSameTitile = true;
+        //   setTimeout(() => {
+        //     this.errorSameTitile = false;
+        //   }, 2500);
+      } else {
+        const schedule: Schedule = {
+          title: this.formDialogControls['title'].value,
+          start: this.formDialogControls['start'].value,
+          end: this.formDialogControls['end'].value,
+          classes: this.formDialogControls['classes'].value,
+          daysOfWeek: this.formDialogControls['daysOfWeek'].value,
+          allDay: this.formDialogControls['allDay'].value,
+        };
+        this.headmasterService
+          .addNewSchedule(
+            schedule.title,
+            schedule.start,
+            schedule.end,
+            schedule.classes,
+            schedule.daysOfWeek,
+            schedule.allDay
+          )
+          .subscribe(
+            (res: any) => {
+              console.log(res);
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Login Success',
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            },
+            () => {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Wrong Account!',
+                text: 'Please Check Your Account and Login Again',
+                showConfirmButton: false,
+                timer: 2500,
+              });
+            }
+          );
+      }
+    }
   }
 }
-
-// { time: '00:00', value: '00:00' },
-// { time: '01:00', value: '01:00' },
-// { time: '02:00', value: '02:00' },
-// { time: '03:00', value: '03:00' },
-// { time: '04:00', value: '04:00' },
-// { time: '05:00', value: '05:00' },
-// { time: '06:00', value: '06:00' },
-// { time: '07:00', value: '07:00' },
-// { time: '08:00', value: '08:00' },
-// { time: '09:00', value: '09:00' },
-// { time: '10:00', value: '10:00' },
-// { time: '11:00', value: '11:00' },
-// { time: '12:00', value: '12:00' },
-// { time: '13:00', value: '13:00' },
-// { time: '14:00', value: '14:00' },
-// { time: '15:00', value: '15:00' },
-// { time: '16:00', value: '16:00' },
-// { time: '17:00', value: '17:00' },
-// { time: '18:00', value: '18:00' },
-// { time: '19:00', value: '19:00' },
-// { time: '20:00', value: '20:00' },
-// { time: '21:00', value: '21:00' },
-// { time: '22:00', value: '22:00' },
-// { time: '23:00', value: '23:00' },

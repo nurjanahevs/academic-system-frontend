@@ -34,10 +34,11 @@
                   aria-describedby="emailHelp"
                   required
                 />
+                <!-- <mat-error *ngIf="!login.get('email')?.hasError('required') || errorHandler">Please Insert Email</mat-error> -->
                 <span
                   id="inputError"
                   *ngIf="
-                    !login.get('email')?.valid && login.get('email')?.touched
+                    !login.get('email')?.valid && login.get('email')?.touched || errorEmail
                   "
                   >Email not match! Please Insert a Match Registered Email</span
                 >
@@ -57,7 +58,7 @@
                   id="inputError"
                   *ngIf="
                     !login.get('password')?.valid &&
-                    login.get('password')?.touched
+                    login.get('password')?.touched || errorPassword
                   "
                   >Password not match! Please Insert a Match Registered
                   Password</span
@@ -73,15 +74,20 @@
                   required
                   formControlName="role"
                 >
-                  <option selected disabled value="">Choose...</option>
+                  <option selected value="">Choose...</option>
                   <option value="Headmaster">Headmaster</option>
                   <option value="Teacher">Teacher</option>
                   <option value="Student">Student</option>
                   <option value="Parent">Parent</option>
                 </select>
-                <div id="validationServer04Feedback" class="invalid-feedback">
-                  Please select a valid state.
-                </div>
+                <span
+                  id="inputError"
+                  *ngIf="
+                    !login.get('role')?.valid &&
+                    login.get('role')?.touched || errorRole
+                  "
+                  >Please Choose Role!</span
+                >
               </div>
               <div class="mb-3 form-check">
                 <input

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 import { AuthData } from '../interface/IAuth';
 import { TokenStorageService } from './token-storage.service';
 
@@ -40,14 +41,19 @@ export class AuthServiceService {
       .post<{ token: string; user: string }>(AUTH_API + 'login', authData)
       .subscribe(
         (res: any) => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Login Success',
+            showConfirmButton: false,
+            timer: 2000,
+          });
           const token = res.token;
           this.token = token;
           this.isLoggedIn = true;
-          console.log("nyampe sini", this.isLoggedIn);
-          
           this.tokenStorage.saveToken(token);
           this.tokenStorage.saveUser(res);
-          console.log(res)
+          console.log(res);
           if (res.user.role === 'Headmaster') {
             this.router.navigate(['/headmaster']);
           } else if (res.user.role === 'Teacher') {
@@ -60,6 +66,14 @@ export class AuthServiceService {
         },
         (err) => {
           this.errorMessage = err.error.message;
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Wrong Account!',
+            text: 'Please Check Your Account and Login Again',
+            showConfirmButton: false,
+            timer: 2500,
+          });
         }
       );
   }

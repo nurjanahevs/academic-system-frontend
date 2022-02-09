@@ -39,7 +39,7 @@ input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 #inputError {
-  font-size: 10px;
+  font-size: 11px;
   color: red;
   margin-left: 5px;
 }

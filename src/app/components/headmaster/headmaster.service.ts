@@ -17,7 +17,7 @@ import {
   ResDataStudent,
   ResponseData,
 } from 'src/app/interface/IResponse';
-import { Schedule } from 'src/app/interface/ISchedule';
+import { Schedule, scheduleSpesific } from 'src/app/interface/ISchedule';
 import { addScore, ScoreData, student } from 'src/app/interface/IScore';
 import {
   editStudent,
@@ -522,4 +522,13 @@ export class HeadmasterService {
     );
   }
 
+  getAllSchedule(): Observable<HttpResponse<scheduleSpesific>> {
+    return this.http.get<scheduleSpesific>(`${API_URL}headmaster/calendar`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
 }

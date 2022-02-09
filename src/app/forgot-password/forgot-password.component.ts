@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { IPassword } from '../interface/IPassword';
 import { ManagePasswordService } from '../_services/manage-password.service';
@@ -14,7 +15,8 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private managePasswordService: ManagePasswordService
+    private managePasswordService: ManagePasswordService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +60,7 @@ export class ForgotPasswordComponent implements OnInit {
               showConfirmButton: true,
               timer: 3000,
             });
+            this.router.navigate(['/login']);
           },
           () => {
             Swal.fire({

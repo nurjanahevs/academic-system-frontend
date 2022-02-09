@@ -1,4 +1,5 @@
 import { grade } from "./IGrade";
+import { Schedule } from "./ISchedule";
 import { studentScore } from "./IScore";
 
 export interface ClassData {

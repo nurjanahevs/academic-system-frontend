@@ -72,7 +72,7 @@ export class AllscheduleComponent implements OnInit {
   openDialog() {
     this.dialog.open(DialogScheduleComponent, {
       width: '400px',
-      height: '520px',
+      height: '550px',
     });
   }
 
