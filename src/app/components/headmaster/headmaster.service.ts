@@ -21,8 +21,10 @@ import { Schedule, scheduleSpesific } from 'src/app/interface/ISchedule';
 import { addScore, ScoreData, student } from 'src/app/interface/IScore';
 import {
   editStudent,
+  statusStudent,
   StudentData,
   StudentSpesific,
+  toActive,
 } from 'src/app/interface/IStudent';
 import {
   CourseTeacher,
@@ -164,6 +166,42 @@ export class HeadmasterService {
     return this.http.put<editStudent>(
       `${API_URL}headmaster/student/${id}`,
       studentData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  changeStatusStudent(
+    _id: string,
+    toDeadActive: string
+  ): Observable<HttpResponse<statusStudent>> {
+    const statusStudent = { toDeadActive };
+    return this.http.put<statusStudent>(
+      `${API_URL}headmaster/student/to-deadactive/${_id}`,
+      statusStudent,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  changeStatusStudentToActive(
+    _id: string,
+    toActive: string
+  ): Observable<HttpResponse<toActive>> {
+    const statusStudent = { toActive };
+    return this.http.put<toActive>(
+      `${API_URL}headmaster/student/to-active/${_id}`,
+      statusStudent,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',

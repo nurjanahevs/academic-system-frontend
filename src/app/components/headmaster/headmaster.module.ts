@@ -54,6 +54,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { DialogScheduleComponent } from './schedule/dialog-schedule/dialog-schedule.component';
 import { DetailScheduleComponent } from './schedule/detail-schedule/detail-schedule.component';
 import { AllscheduleComponent } from './schedule/allschedule/allschedule.component';
+import { AddscheduleSpesisicComponent } from './schedule/addschedule-spesisic/addschedule-spesisic.component';
 
 
 @NgModule({
@@ -107,6 +108,7 @@ import { AllscheduleComponent } from './schedule/allschedule/allschedule.compone
     DialogScheduleComponent,
     DetailScheduleComponent,
     AllscheduleComponent,
+    AddscheduleSpesisicComponent,
   ],
   imports: [
     CommonModule,

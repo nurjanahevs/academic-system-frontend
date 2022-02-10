@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { EventApi, CalendarOptions } from '@fullcalendar/angular';
 import { ScheduleService } from 'src/app/_services/schedule.service';
+import { AddscheduleSpesisicComponent } from '../addschedule-spesisic/addschedule-spesisic.component';
 import { DialogScheduleComponent } from '../dialog-schedule/dialog-schedule.component';
 
 @Component({
@@ -71,6 +72,13 @@ export class AllscheduleComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(DialogScheduleComponent, {
+      width: '400px',
+      height: '550px',
+    });
+  }
+
+  dialogFormAddTeacher() {
+    this.dialog.open(AddscheduleSpesisicComponent, {
       width: '400px',
       height: '550px',
     });

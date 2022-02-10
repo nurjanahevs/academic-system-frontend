@@ -74,6 +74,22 @@ export class ManageScoreComponent implements OnInit {
     return this.manageScoreForm.controls;
   }
 
+  public onSave() {
+    // const score: any = {
+    //   dailyScore: this.manageScoreFormControls['dailyScore'].value,
+    //   midtest: this.manageScoreFormControls['midtest'].value,
+    //   finaltest: this.manageScoreFormControls['finaltest'].value,
+    //   resultScore: this.manageScoreFormControls['resultScore'].value,
+    // }
+    // this.teacherService.manageScoreStudent(
+    //   this.idScore,
+    //   score.dailyScore,
+    //   score.midtest,
+    //   score.finaltest,
+    //   score.reallyScore,
+    // )
+  }
+
   public _spinner() {
     setTimeout(() => {
       this.spinner = true;

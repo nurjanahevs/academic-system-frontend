@@ -62,11 +62,59 @@
             >Select New Class :</label
           >
           <div class="col-sm-3">
-            <select class="form-select" id="classAfter" formControlName="classAfter">
+            <select
+              class="form-select"
+              id="classAfter"
+              formControlName="classAfter"
+            >
               <option *ngFor="let item of classes" value="{{ item.className }}">
                 {{ item.className }}
               </option>
             </select>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="status" class="col-sm-2 col-form-label">Status</label>
+          <div class="col-sm-3">
+            <input
+              type="text"
+              readonly
+              class="form-control"
+              id="status"
+              formControlName="status"
+            />
+          </div>
+          <div class="col-md-4">
+            <button
+              class="btn btn-primary"
+              (click)="toDeadActive()"
+              [hidden]="!buttonDeadActive"
+            >
+              Set To Deadactive
+            </button>
+            <input
+              [hidden]="!formDeadActive"
+              type="text"
+              readonly
+              class="form-control"
+              id="status"
+              formControlName="toDeadActive"
+            />
+            <button
+              class="btn btn-primary"
+              (click)="toActive()"
+              [hidden]="!buttonActive"
+            >
+              Set To Active
+            </button>
+            <input
+              [hidden]="!formActive"
+              type="text"
+              readonly
+              class="form-control"
+              id="status"
+              formControlName="toActive"
+            />
           </div>
         </div>
         <div class="container action">

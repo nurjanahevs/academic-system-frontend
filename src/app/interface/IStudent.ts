@@ -80,3 +80,13 @@ export interface studentGetData {
   grade: grade,
   yearAcademic: string,
 }
+
+export interface statusStudent {
+  _id?: string;
+  toDeadActive: string;
+}
+
+export interface toActive {
+  _id?: string;
+  toActive: string;
+}

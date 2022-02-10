@@ -12,7 +12,7 @@ export interface Schedule {
 
 export interface scheduleSpesific {
   _id: string;
-  title: string;
+  title: any;
   start: Date;
   end: Date;
   classes: ClassData;

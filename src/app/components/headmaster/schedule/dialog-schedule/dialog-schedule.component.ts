@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ClassData } from 'src/app/interface/IClass';
 import { Schedule, scheduleSpesific } from 'src/app/interface/ISchedule';
 import Swal from 'sweetalert2';
@@ -24,15 +25,13 @@ export class DialogScheduleComponent implements OnInit {
     { repeat: '7', value: '7' },
   ];
   dialogFormSchedule!: FormGroup;
-  getCalendar!: scheduleSpesific[];
+  getCalendar: scheduleSpesific[] = [];
   errorSameTitile = false;
-  errorSameStart = false;
-  errorSameEnd = false;
-  errorSameClass = false;
-
+  errorFill = false;
   constructor(
     private formBuilder: FormBuilder,
-    private headmasterService: HeadmasterService
+    private headmasterService: HeadmasterService,
+    private dialogRef: MatDialogRef<DialogScheduleComponent>
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +50,7 @@ export class DialogScheduleComponent implements OnInit {
       daysOfWeek: ['', [Validators.min(0), Validators.max(7)]],
       allDay: [''],
     });
+    console.log(this.dialogFormSchedule);
   }
 
   get formDialogControls() {
@@ -67,8 +67,14 @@ export class DialogScheduleComponent implements OnInit {
     this.headmasterService.getAllSchedule().subscribe((res: any) => {
       this.getCalendar = res.body;
       console.log(this.getCalendar);
-      for (let key in this.getCalendar) {
-        console.log(this.getCalendar[key]);
+      const arr = this.getCalendar;
+      console.log(arr);
+      for (let key in arr) {
+        console.log(arr[key].title);
+        // console.log(arr[key].classes);
+        // console.log(arr[key].classes._id);
+        console.log(arr[key].classes.className);
+        console.log(this.formDialogControls['title'].value);
       }
     });
   }
@@ -79,85 +85,89 @@ export class DialogScheduleComponent implements OnInit {
   }
 
   public onSave() {
-    for (let key in this.getCalendar) {
-      if (
-        this.getCalendar[key].title ===
-          this.formDialogControls['title'].value ||
-        this.getCalendar[key].classes?.className ===
-          this.formDialogControls['classes'].value ||
-        this.getCalendar[key].start ===
-          this.formDialogControls['start'].value ||
-        this.getCalendar[key].end === this.formDialogControls['end'].value
-      ) {
-        this.errorSameTitile = true;
-        setTimeout(() => {
-          this.errorSameTitile = false;
-        }, 2500);
-        // for (let key in this.getCalendar) {
-        //   if (
-        //     this.getCalendar[key].title ===
-        //       this.formDialogControls['title'].value ||
-        //     this.getCalendar[key].classes?.className ===
-        //       this.formDialogControls['classes'].value ||
-        //     this.getCalendar[key].start ===
-        //       this.formDialogControls['start'].value ||
-        //     this.getCalendar[key].end === this.formDialogControls['end'].value
-        //   ) {
-        //     this.errorSameTitile = true;
-        //     setTimeout(() => {
-        //       this.errorSameTitile = false;
-        //     }, 2500);
-        // if (
-        //   this.getCalendar[key].title ===
-        //     this.formDialogControls['title'].value &&
-        //   this.getCalendar[key].classes.className ===
-        //     this.formDialogControls['classes'].value
-        // ) {
-        //   this.errorSameTitile = true;
-        //   setTimeout(() => {
-        //     this.errorSameTitile = false;
-        //   }, 2500);
-      } else {
-        const schedule: Schedule = {
-          title: this.formDialogControls['title'].value,
-          start: this.formDialogControls['start'].value,
-          end: this.formDialogControls['end'].value,
-          classes: this.formDialogControls['classes'].value,
-          daysOfWeek: this.formDialogControls['daysOfWeek'].value,
-          allDay: this.formDialogControls['allDay'].value,
-        };
-        this.headmasterService
-          .addNewSchedule(
-            schedule.title,
-            schedule.start,
-            schedule.end,
-            schedule.classes,
-            schedule.daysOfWeek,
-            schedule.allDay
-          )
-          .subscribe(
-            (res: any) => {
-              console.log(res);
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Login Success',
-                showConfirmButton: false,
-                timer: 2000,
-              });
-            },
-            () => {
-              Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'Wrong Account!',
-                text: 'Please Check Your Account and Login Again',
-                showConfirmButton: false,
-                timer: 2500,
-              });
-            }
-          );
-      }
+    if (
+      this.formDialogControls['title'].invalid === true ||
+      this.formDialogControls['start'].invalid === true ||
+      this.formDialogControls['end'].invalid === true ||
+      this.formDialogControls['classes'].invalid === true
+    ) {
+      this.errorFill = true;
+      setTimeout(() => {
+        this.errorFill = false;
+      }, 3000);
+    } else {
+      this.headmasterService.getAllSchedule().subscribe((res: any) => {
+        this.getCalendar = res.body;
+        const arr = this.getCalendar;
+        let title = [];
+        let classSame = {};
+        console.log(arr);
+        for (let key in arr) {
+          if (
+            arr[key].title === this.formDialogControls['title'].value &&
+            arr[key].classes.className ===
+              this.formDialogControls['classes'].value
+          ) {
+            title = arr[key].title;
+            classSame = arr[key].classes.className;
+          }
+        }
+        console.log(title);
+        console.log(classSame);
+        if (
+          title === this.formDialogControls['title'].value &&
+          classSame === this.formDialogControls['classes'].value
+        ) {
+          console.log('error');
+          this.errorSameTitile = true;
+          setTimeout(() => {
+            this.errorSameTitile = false;
+          }, 3000);
+        } else {
+          const schedule: Schedule = {
+            title: this.formDialogControls['title'].value,
+            start: this.formDialogControls['start'].value,
+            end: this.formDialogControls['end'].value,
+            classes: this.formDialogControls['classes'].value,
+            daysOfWeek: this.formDialogControls['daysOfWeek'].value,
+            allDay: this.formDialogControls['allDay'].value,
+          };
+          this.headmasterService
+            .addNewSchedule(
+              schedule.title,
+              schedule.start,
+              schedule.end,
+              schedule.classes,
+              schedule.daysOfWeek,
+              schedule.allDay
+            )
+            .subscribe(
+              (res: any) => {
+                console.log(res);
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Success To Add Schedule',
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
+              },
+              () => {
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'error',
+                  title: 'Form Required to Fill',
+                  showConfirmButton: false,
+                  timer: 2500,
+                });
+              }
+            );
+        }
+      });
     }
+  }
+
+  public onDialogClose() {
+    this.dialogRef.close();
   }
 }

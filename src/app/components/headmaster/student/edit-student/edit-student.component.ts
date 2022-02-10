@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClassData } from 'src/app/interface/IClass';
-import { editStudent } from 'src/app/interface/IStudent';
+import {
+  editStudent,
+  statusStudent,
+  toActive,
+} from 'src/app/interface/IStudent';
 import Swal from 'sweetalert2';
 import { HeadmasterService } from '../../headmaster.service';
 
@@ -16,6 +20,11 @@ export class EditStudentComponent implements OnInit {
   editStudentForm!: FormGroup;
   idStudent: any;
   classes!: ClassData[];
+  formDeadActive = false;
+  formActive = false;
+  buttonDeadActive = false;
+  buttonActive = false;
+  statusStudent!: statusStudent;
 
   constructor(
     private router: Router,
@@ -32,6 +41,7 @@ export class EditStudentComponent implements OnInit {
     this.editStudentFormInit();
     this.getValueStudent();
     this.getClasses();
+    this.getStatusStudent();
   }
 
   public _spinner() {
@@ -50,6 +60,9 @@ export class EditStudentComponent implements OnInit {
         this.studentFormControls['classBefore'].setValue(
           res.body.classes.className
         );
+        this.studentFormControls['status'].setValue(res.body.status);
+        this.studentFormControls['toDeadActive'].setValue('Deadactive');
+        this.studentFormControls['toActive'].setValue('Active');
       });
   }
 
@@ -60,11 +73,88 @@ export class EditStudentComponent implements OnInit {
       birthDate: ['', Validators.required],
       classBefore: ['', Validators.required],
       classAfter: ['', Validators.required],
+      status: [''],
+      toDeadActive: ['Deadactive', Validators.required],
+      toActive: ['Active', Validators.required],
     });
   }
 
   get studentFormControls() {
     return this.editStudentForm.controls;
+  }
+
+  public getStatusStudent() {
+    this.headmasterService
+      .getSpesificStudent(this.idStudent)
+      .subscribe((res: any) => {
+        this.statusStudent = res.body.status;
+        console.log(this.statusStudent);
+        if (this.statusStudent === this.studentFormControls['toActive'].value) {
+          this.buttonDeadActive = true;
+        } else if (
+          this.statusStudent === this.studentFormControls['toDeadActive'].value
+        ) {
+          this.buttonActive = true;
+        }
+      });
+  }
+
+  public toDeadActive() {
+    const status: statusStudent = {
+      toDeadActive: this.studentFormControls['toDeadActive'].value,
+    };
+    this.headmasterService
+      .changeStatusStudent(this.idStudent, status.toDeadActive)
+      .subscribe(
+        (res) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Change Status Student Success',
+            text: 'Headmaster to Deadactive Student Data Successfull',
+            showConfirmButton: true,
+            timer: 3000,
+          });
+          this.router.navigate(['/headmaster/student']);
+        },
+        () => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      );
+  }
+
+  public toActive() {
+    const status: toActive = {
+      toActive: this.studentFormControls['toActive'].value,
+    };
+    this.headmasterService
+      .changeStatusStudentToActive(this.idStudent, status.toActive)
+      .subscribe(
+        (res: any) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Change Status Student Success',
+            text: 'Headmaster to Active Student Data Successfull',
+            showConfirmButton: true,
+            timer: 3000,
+          });
+          this.router.navigate(['/headmaster/student']);
+        },
+        () => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      );
   }
 
   public onSave() {
@@ -108,7 +198,7 @@ export class EditStudentComponent implements OnInit {
   public getClasses() {
     this.headmasterService.getClass().subscribe((res: any) => {
       this.classes = res.body;
-    })
+    });
   }
 
   public onBack() {
