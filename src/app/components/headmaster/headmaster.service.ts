@@ -11,7 +11,13 @@ import {
   HomeStudent,
   HomeTeach,
 } from 'src/app/interface/IHomeroom';
-import { editParent, getParent, ParentData } from 'src/app/interface/IParent';
+import {
+  editParent,
+  getParent,
+  ParentData,
+  statusActiveParent,
+  statusDeadActiveParent,
+} from 'src/app/interface/IParent';
 import {
   ResDataClass,
   ResDataStudent,
@@ -31,6 +37,7 @@ import {
   editTeacher,
   TeacherData,
 } from 'src/app/interface/ITeacher';
+import { IYearAcademic } from 'src/app/interface/IYearAcademic';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { environment } from 'src/environments/environment';
 
@@ -390,12 +397,48 @@ export class HeadmasterService {
     father: string,
     mother: string,
     birthDate: string,
-    student: Array<StudentData>
+    addStudent: Array<StudentData>
   ): Observable<HttpResponse<editParent>> {
-    const parentData = { father, mother, birthDate, student };
+    const parentData = { father, mother, birthDate, addStudent };
     return this.http.put<editParent>(
       `${API_URL}headmaster/parent/${_id}`,
       parentData,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  toActiveParent(
+    _id: string,
+    toActive: string
+  ): Observable<HttpResponse<statusActiveParent>> {
+    const activeParent = { toActive };
+    return this.http.put<statusActiveParent>(
+      `${API_URL}headmaster/parent/to-active/${_id}`,
+      activeParent,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
+  }
+
+  toDeadActiveParent(
+    _id: string,
+    toDeadActive: string
+  ): Observable<HttpResponse<statusDeadActiveParent>> {
+    const deadActiveParent = { toDeadActive };
+    return this.http.put<statusDeadActiveParent>(
+      `${API_URL}headmaster/parent/to-deadactive/${_id}`,
+      deadActiveParent,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
@@ -568,5 +611,30 @@ export class HeadmasterService {
       }),
       observe: 'response',
     });
+  }
+
+  getYearAcademic(): Observable<HttpResponse<IYearAcademic>> {
+    return this.http.get<IYearAcademic>(`${API_URL}headmaster/yearAcademic`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.tokenStorageService.getToken()!,
+      }),
+      observe: 'response',
+    });
+  }
+
+  studentByYear(yearAcademic: string): Observable<HttpResponse<IYearAcademic>> {
+    const year = { yearAcademic };
+    return this.http.post<IYearAcademic>(
+      `${API_URL}headmaster/yearAcademic/searching-student`,
+      year,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.tokenStorageService.getToken()!,
+        }),
+        observe: 'response',
+      }
+    );
   }
 }

@@ -55,6 +55,8 @@ import { DialogScheduleComponent } from './schedule/dialog-schedule/dialog-sched
 import { DetailScheduleComponent } from './schedule/detail-schedule/detail-schedule.component';
 import { AllscheduleComponent } from './schedule/allschedule/allschedule.component';
 import { AddscheduleSpesisicComponent } from './schedule/addschedule-spesisic/addschedule-spesisic.component';
+import { SearchstudentYearacademicComponent } from './student/searchstudent-yearacademic/searchstudent-yearacademic.component';
+import { DetailstudentYearComponent } from './student/searchstudent-yearacademic/detailstudent-year/detailstudent-year.component';
 
 
 @NgModule({
@@ -109,6 +111,8 @@ import { AddscheduleSpesisicComponent } from './schedule/addschedule-spesisic/ad
     DetailScheduleComponent,
     AllscheduleComponent,
     AddscheduleSpesisicComponent,
+    SearchstudentYearacademicComponent,
+    DetailstudentYearComponent,
   ],
   imports: [
     CommonModule,

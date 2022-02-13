@@ -88,7 +88,6 @@ export class EditStudentComponent implements OnInit {
       .getSpesificStudent(this.idStudent)
       .subscribe((res: any) => {
         this.statusStudent = res.body.status;
-        console.log(this.statusStudent);
         if (this.statusStudent === this.studentFormControls['toActive'].value) {
           this.buttonDeadActive = true;
         } else if (

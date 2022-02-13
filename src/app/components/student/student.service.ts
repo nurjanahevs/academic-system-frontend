@@ -16,6 +16,9 @@ export class StudentService {
     private tokenStorageService: TokenStorageService
   ) {}
 
+  // getStudentData(_id: string): Observable<studentGetData> {
+  //   return this.http.get<studentGetData>(`${API_URL}student/${_id}`);
+  // }
   getStudentData(_id: string): Observable<HttpResponse<studentGetData>> {
     return this.http.get<studentGetData>(`${API_URL}student/${_id}`, {
       headers: new HttpHeaders({

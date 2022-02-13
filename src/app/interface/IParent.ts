@@ -28,7 +28,7 @@ export interface editParent {
   father: string;
   mother: string;
   birthDate: string;
-  student: Array<StudentData>;
+  addStudent: Array<StudentData>;
 }
 
 export interface IParent {
@@ -39,4 +39,14 @@ export interface IParent {
   role: string;
   status: string;
   student: Array<studentGetData>;
+}
+
+export interface statusActiveParent {
+  _id?: string;
+  toActive: string;
+}
+
+export interface statusDeadActiveParent {
+  _id?: string;
+  toDeadActive: string;
 }

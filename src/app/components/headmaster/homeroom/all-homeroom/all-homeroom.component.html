@@ -17,9 +17,9 @@
         <tbody>
           <tr class="teacher-data" *ngFor="let item of homeroom; let i = index">
             <td scope="row">{{ i + 1 }}</td>
-            <td class="name">{{ item._id }}</td>
-            <td class="gender">{{ item.homeroomName.fullName }}</td>
-            <td class="teach">{{ item.className.className }}</td>
+            <td class="name">{{ item?._id }}</td>
+            <td class="gender">{{ item?.homeroomName?.fullName }}</td>
+            <td class="teach">{{ item?.className?.className }}</td>
             <td class="see">
               <button class="btn btn-primary" (click)="onDetail(item)">
                 <fa-icon [icon]="faSearch"></fa-icon>

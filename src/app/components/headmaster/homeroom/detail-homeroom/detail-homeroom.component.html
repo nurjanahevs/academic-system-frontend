@@ -12,7 +12,7 @@
           </div>
           <div class="is col-1"><p>:</p></div>
           <div class="desc col-4">
-            <p>{{ homerooms._id }}</p>
+            <p>{{ homerooms?._id }}</p>
           </div>
         </div>
         <div class="row">
@@ -21,7 +21,7 @@
           </div>
           <div class="is col-1"><p>:</p></div>
           <div class="desc col-4">
-            <p>{{ homerooms.homeroomName.fullName }}</p>
+            <p>{{ homerooms?.homeroomName?.fullName }}</p>
           </div>
         </div>
         <div class="row">
@@ -30,7 +30,7 @@
           </div>
           <div class="is col-1"><p>:</p></div>
           <div class="desc col-4">
-            <p>{{ homerooms.homeroomName.email }}</p>
+            <p>{{ homerooms?.homeroomName?.email }}</p>
           </div>
         </div>
         <div class="row">
@@ -39,7 +39,7 @@
           </div>
           <div class="is col-1"><p>:</p></div>
           <div class="desc col-4">
-            <p>{{ homerooms.role }}</p>
+            <p>{{ homerooms?.role }}</p>
           </div>
         </div>
         <div class="row">
@@ -48,7 +48,7 @@
           </div>
           <div class="is col-1"><p>:</p></div>
           <div class="desc col-4">
-            <p>{{ homerooms.className.className }}</p>
+            <p>{{ homerooms?.className?.className }}</p>
           </div>
         </div>
         <table class="table" style="margin: 10px auto">
@@ -61,7 +61,7 @@
           </thead>
           <tbody>
             <tr
-              *ngFor="let item of homerooms.className.student; let i = index"
+              *ngFor="let item of homerooms?.className?.student; let i = index"
             >
               <td>{{ i + 1 }}</td>
               <td>{{ item.fullName }}</td>

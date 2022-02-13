@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://localhost:3535/',
+  // API_URL: 'http://localhost:3535/',
+  API_URL: 'https://systemschooling.herokuapp.com/',
 };
 
 /*

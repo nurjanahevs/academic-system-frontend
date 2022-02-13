@@ -53,7 +53,6 @@ export class AuthServiceService {
           this.isLoggedIn = true;
           this.tokenStorage.saveToken(token);
           this.tokenStorage.saveUser(res);
-          console.log(res);
           if (res.user.role === 'Headmaster') {
             this.router.navigate(['/headmaster']);
           } else if (res.user.role === 'Teacher') {

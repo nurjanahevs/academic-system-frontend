@@ -36,9 +36,56 @@
           <div class="col-sm-10">
             <input
               type="text"
+              readonly
               class="form-control"
               id="birthDate"
               formControlName="birthDate"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="status" class="col-sm-2 col-form-label"
+            >Status</label
+          >
+          <div class="col-sm-3">
+            <input
+              type="text"
+              readonly
+              class="form-control"
+              id="status"
+              formControlName="status"
+            />
+          </div>
+          <div class="col-md-4">
+            <button
+              class="btn btn-primary"
+              (click)="toDeadActive()"
+              [hidden]="!buttonDeadActive"
+            >
+              Set To Deadactive
+            </button>
+            <input
+              [hidden]="!formDeadActive"
+              type="text"
+              readonly
+              class="form-control"
+              id="status"
+              formControlName="toDeadActive"
+            />
+            <button
+              class="btn btn-primary"
+              (click)="toActive()"
+              [hidden]="!buttonActive"
+            >
+              Set To Active
+            </button>
+            <input
+              [hidden]="!formActive"
+              type="text"
+              readonly
+              class="form-control"
+              id="status"
+              formControlName="toActive"
             />
           </div>
         </div>
@@ -48,32 +95,59 @@
             <input
               type="text"
               class="form-control"
+              readonly
               id="student"
               formControlName="student"
             />
           </div>
         </div>
-        <div class="col-sm-3 mb-3 row" formArrayName="student">
-          <button class="btn btn-primary" (click)="onAddStudent()">
-            Add Student to Parent
-          </button>
-          <div
-            class="col-sm-3 mb-3 row"
-            *ngFor="let student of student.controls; let i = index"
-          >
-            <label for="student-{{ i }}" class="col-sm-2 col-form-label"
-              >Student</label
-            >
-            <div class="col-sm-10">
-              <input
-                type="text"
-                class="form-control"
-                id="student-{{ i }}"
-                [formControlName]="i"
-              />
+        <div class="row" formArrayName="addStudent">
+          <div *ngFor="let item of addStudent.controls; let i = index">
+            <div class="mb-3 row" *ngIf="onNewStudent">
+              <label for="item" class="col-sm-2 col-form-label">Add Student</label>
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="item"
+                  formControlName="{{ i }}"
+                />
+              </div>
             </div>
           </div>
+          <div class="col-sm-3 mt-3">
+            <button class="btn btn-primary" (click)="onAddStudent()">
+              Add Student
+            </button>
+          </div>
         </div>
+
+        <!-- <div formArrayName="addStudent">
+          <div
+            class="mb-3 row"
+            *ngFor="let item of student().controls; let studentIndex = index"
+          >
+            <div [formGroupName]="studentIndex">
+              <label for="addStudent" class="col-sm-2 col-form-label"
+                >Student</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="addStudent"
+                  formControlName="addStudent"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3 mb-3 row">
+              <button class="btn btn-primary" (click)="onAddStudent()">
+                Add Student to Parent
+              </button>
+            </div>
+          </div>
+        </div> -->
+
         <div class="container action">
           <button
             type="button"

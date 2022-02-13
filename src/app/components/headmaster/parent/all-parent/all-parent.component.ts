@@ -16,7 +16,7 @@ export class AllParentComponent implements OnInit {
   faSearch = faSearch;
   faEdit = faEdit;
   faEraser = faEraser;
-  parents: getParent[] = [];
+  parents!: getParent[];
   selectedParent!: getParent;
 
   constructor(

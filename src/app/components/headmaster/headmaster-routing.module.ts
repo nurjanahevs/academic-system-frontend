@@ -38,6 +38,8 @@ import { CreateStudentComponent } from './student/create-student/create-student.
 import { DetailStudentComponent } from './student/detail-student/detail-student.component';
 import { EditStudentComponent } from './student/edit-student/edit-student.component';
 import { StudentRaportComponent } from './student/raport/student-raport.component';
+import { DetailstudentYearComponent } from './student/searchstudent-yearacademic/detailstudent-year/detailstudent-year.component';
+import { SearchstudentYearacademicComponent } from './student/searchstudent-yearacademic/searchstudent-yearacademic.component';
 import { StudentComponent } from './student/student.component';
 import { AllTeacherComponent } from './teacher/all-teacher/all-teacher.component';
 import { CreateTeacherComponent } from './teacher/create-teacher/create-teacher.component';
@@ -46,7 +48,8 @@ import { EditTeacherComponent } from './teacher/edit-teacher/edit-teacher.compon
 import { TeacherComponent } from './teacher/teacher.component';
 
 const routes: Routes = [
-  { path: '', component: HeadmasterComponent },
+  // { path: '', component: HeadmasterComponent },
+  { path: '', redirectTo: '/headmaster/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   {
     path: 'teacher',
@@ -104,6 +107,8 @@ const routes: Routes = [
       { path: 'edit/:id', component: EditStudentComponent },
       { path: 'raport', component: StudentRaportComponent },
       { path: ':id', component: DetailStudentComponent },
+      { path: 'searchBy/academicYear', component: SearchstudentYearacademicComponent },
+      { path: 'searchBy/academicYear/:id', component: DetailstudentYearComponent }
     ],
   },
   {

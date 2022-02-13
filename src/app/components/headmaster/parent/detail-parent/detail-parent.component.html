@@ -60,12 +60,12 @@
             <p>{{ parents?.birthDate }}</p>
           </div>
         </div>
-        <div class="row">
+        <div class="row" *ngFor="let a of parents?.student; let i=index">
           <div class="title col-4">
-            <p><strong>Student</strong></p>
+            <p><strong>Student {{ i+1 }}</strong></p>
           </div>
           <div class="is col-1"><p>:</p></div>
-          <div class="desc col-4" *ngFor="let a of parents?.student">
+          <div class="desc col-4">
             <p>{{ a.fullName }}</p>
           </div>
         </div>
