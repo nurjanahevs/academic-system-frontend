@@ -4,6 +4,7 @@ const TOKEN_KEY = 'Authorization';
 const USER_KEY = 'auth-user';
 const SCORE_KEY = 'score-key';
 const CLASS_KEY = 'class-key';
+const IDKEY_USER = 'id-user';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +35,7 @@ export class TokenStorageService {
   public deleteToken(): void {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
+    localStorage.removeItem(IDKEY_USER);
   }
 
   public saveUser(user: any): void {
@@ -50,5 +52,17 @@ export class TokenStorageService {
       return JSON.parse(user);
     }
     return {};
+  }
+
+  public setIdUser(id: string): void {
+    localStorage.setItem(IDKEY_USER, id);
+  }
+
+  public getIdUser(): string | null {
+    return localStorage.getItem(IDKEY_USER);
+  }
+
+  public clear() {
+    localStorage.clear();
   }
 }

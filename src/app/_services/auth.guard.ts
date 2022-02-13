@@ -6,6 +6,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 import { AuthServiceService } from './auth-service.service';
 import { TokenStorageService } from './token-storage.service';
 
@@ -23,11 +24,19 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | Observable<boolean> | Promise<boolean> {
-    const isToken = this.tokenStorageService.getToken();
-    if (!isToken) {
+    const isAuth = this.authService.getIsAuth();
+    console.log(isAuth)
+    if (!isAuth) {
+      Swal.fire({
+        icon: 'error',
+        title: "You're Not Authenticated!",
+        text: "You Doesn't Have Access This Page!",
+        showConfirmButton: false,
+        timer: 2500,
+      });
       this.router.navigate(['/login']);
-      return false;
+      return isAuth;
     }
-    return true;
+    return isAuth;
   }
 }

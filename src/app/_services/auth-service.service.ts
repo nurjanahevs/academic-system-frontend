@@ -13,10 +13,12 @@ const AUTH_API = environment.API_URL + 'api/';
   providedIn: 'root',
 })
 export class AuthServiceService {
-  isLoggedIn = false;
+  private isAuthenticated = false;
   errorMessage = '';
-  token: string | null = '';
-  // authStatusListener = new Subject<boolean>();
+  private token: string | null = '';
+  private authStatusListener = new Subject<boolean>();
+  private userId!: string | null;
+
   constructor(
     private http: HttpClient,
     private tokenStorage: TokenStorageService,
@@ -27,13 +29,17 @@ export class AuthServiceService {
     return this.token;
   }
 
-  getIsAuth() {
-    return this.isLoggedIn;
+  getUserId() {
+    return this.userId;
   }
 
-  // getAuthStatusListener() {
-  //   return this.authStatusListener.asObservable();
-  // }
+  getIsAuth() {
+    return this.isAuthenticated;
+  }
+
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
+  }
 
   login(email: string, password: string, role: string) {
     const authData: AuthData = { email, password, role };
@@ -41,6 +47,7 @@ export class AuthServiceService {
       .post<{ token: string; user: string }>(AUTH_API + 'login', authData)
       .subscribe(
         (res: any) => {
+          console.log(res)
           Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -49,10 +56,12 @@ export class AuthServiceService {
             timer: 2000,
           });
           const token = res.token;
+          const userId = res.user.id;
           this.token = token;
-          this.isLoggedIn = true;
+          this.isAuthenticated = true;
           this.tokenStorage.saveToken(token);
           this.tokenStorage.saveUser(res);
+          this.tokenStorage.setIdUser(userId);
           if (res.user.role === 'Headmaster') {
             this.router.navigate(['/headmaster']);
           } else if (res.user.role === 'Teacher') {
@@ -78,8 +87,11 @@ export class AuthServiceService {
   }
 
   logout() {
-    this.isLoggedIn = false;
+    this.token = null;
+    this.userId = null;
+    this.isAuthenticated = false;
     this.tokenStorage.deleteToken();
+    this.tokenStorage.clear();
     this.router.navigate(['']);
   }
 }
